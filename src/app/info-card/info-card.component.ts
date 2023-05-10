@@ -27,7 +27,10 @@ export class InfoCardComponent {
     const requests = [];
 
     for (let i = 0; i < this.accounts.length; i++) {
-      let API_BasicInfo = environment.basicInfo + '?summoner_name=' + encodeURIComponent(this.accounts[i].accIGN) + '&region=' + encodeURIComponent(this.accounts[i].accServer);
+      let API_BasicInfo =
+        environment.basicInfo +
+        '?summoner_name=' + encodeURIComponent(this.accounts[i].accIGN) +
+        '&region=' + encodeURIComponent(this.accounts[i].accServer);
 
       requests.push(this.http.get<any[]>(API_BasicInfo));
       // console.log(API_BasicInfo);
@@ -38,7 +41,10 @@ export class InfoCardComponent {
       const secondaryRequests = [];
 
       for (let i = 0; i < this.accounts.length; i++) {
-        let API_RankInfo = environment.rankedInfo + '?summoner_id=' + encodeURIComponent(this.apiAccounts[i].id) + '&region=' + encodeURIComponent(this.accounts[i].accServer);
+        let API_RankInfo =
+          environment.rankedInfo +
+          '?summoner_id=' + encodeURIComponent(this.apiAccounts[i].id) +
+          '&region=' + encodeURIComponent(this.accounts[i].accServer);
 
         secondaryRequests.push(this.http.get<any[]>(API_RankInfo));
         // console.log(API_RankInfo);
@@ -49,21 +55,32 @@ export class InfoCardComponent {
           let summonerLevel = this.apiAccounts[i].summonerLevel;
           let summonerID = this.apiAccounts[i].id;
           let profileIconID = this.apiAccounts[i].profileIconId;
-          let rank, rankTier,
+          let rank, rankTier, rankFlex, rankTierFlex,
             soloqWins, soloqLosses, soloqLP,
-            flexqWins, flexQlosses,
-            winrate;
+            flexqWins, flexqLosses, flexqLP;
 
+          console.log(rankResults);
           // Filter ranks
           if (rankResults[i].length > 0) {
-            rank = rankResults[i][0].tier;
-            rankTier = rankResults[i][0].rank;
-            soloqWins = rankResults[i][0].wins;
-            soloqLosses = rankResults[i][0].losses;
-            soloqLP = rankResults[i][0].leaguePoints;
-          } else {
-            rank = 'Unranked';
+            for (let j = 0; j < rankResults[i].length; j++) {
+              if (rankResults[i][j].queueType === "RANKED_SOLO_5x5") {
+                rank = rankResults[i][j].tier;
+                rankTier = rankResults[i][j].rank;
+
+                soloqWins = rankResults[i][j].wins;
+                soloqLosses = rankResults[i][j].losses;
+                soloqLP = rankResults[i][j].leaguePoints;
+              } else if (rankResults[i][j].queueType === "RANKED_FLEX_SR") {
+                rankFlex = rankResults[i][j].tier;
+                rankTierFlex = rankResults[i][j].rank;
+
+                flexqWins = rankResults[i][j].wins;
+                flexqLosses = rankResults[i][j].losses;
+                flexqLP = rankResults[i][j].leaguePoints;
+              }
+            }
           }
+          
 
           this.combinedAccounts.push({
             userID: this.accounts[i].userID,
@@ -96,10 +113,10 @@ export class InfoCardComponent {
             summonerLevel: summonerLevel,
             summonerID: summonerID,
             profileIconId: profileIconID,
-            rank: rank,
-            rankTier: rankTier,
+            rank: rank, rankFlex: rankFlex,
+            rankTier: rankTier, rankTierFlex: rankTierFlex,
             soloqWins: soloqWins, soloqLosses: soloqLosses, soloqLP: soloqLP,
-            winrate: winrate,
+            flexqWins: flexqWins, flexqLosses: flexqLosses, flexqLP: flexqLP,
           });
         }
       });
@@ -109,8 +126,8 @@ export class InfoCardComponent {
   }
 
   // Filter decimal places in winrate
-  getFormattedWinRate(soloqWins: number, soloqLosses: number): any {
-    const winRate = soloqWins / (soloqWins + soloqLosses) * 100;
+  getFormattedWinRate(wins: number, losses: number): any {
+    const winRate = wins / (wins + losses) * 100;
     if (Number.isInteger(winRate)) {
       return winRate.toFixed(0);
     } else if (winRate == 0) {

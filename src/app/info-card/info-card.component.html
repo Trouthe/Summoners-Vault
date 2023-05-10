@@ -44,29 +44,32 @@
                     <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
                     
                     <!-- FLEX Q INFO -->
-                    <div class="flex flex-row text-lg ml-10">
-                        <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
-                        <div>
-                            <img width="85px" height="100px" src="https://static.bigbrain.gg/assets/lol/s12_rank_icons/{{x.rank | lowercase}}.png" alt="Ranked Emblem"
-                                 style="margin-left: -.75rem;">
-                        </div>
-                        <div>
-                            <div class="mt-1">
-                                <span class="">{{x.rank | titlecase}}<span class="ml-2">{{romanToLatin(x.rankTier)}}</span></span>
-                                {{x.soloqWins}}<span class="text-md text-[var(--grey1)] ml-1">W</span>
-                                {{x.soloqLosses}}<span class="text-md text-[var(--grey1)] ml-1">L</span>
+                    <!-- check if flex wins and losses exist -->
+                    <div *ngIf="x.flexqWins && x.flexqLosses">
+                        <div class="flex flex-row text-lg ml-10">
+                            <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
+                            <div>
+                                <img width="85px" height="100px" src="https://static.bigbrain.gg/assets/lol/s12_rank_icons/{{x.rankFlex | lowercase}}.png" alt="Ranked Emblem"
+                                     style="margin-left: -.75rem;">
                             </div>
-                            <div class="mt-1">
-                                {{x.soloqLP}}<span class="text-base text-[var(--grey1)] ml-1">LP</span>
-            
-                                <span [ngClass]="{
-                                    'text-yellow-400': getFormattedWinRate(x.soloqWins, x.soloqLosses) > 70,
-                                    'text-blue-500': getFormattedWinRate(x.soloqWins, x.soloqLosses) > 60 && getFormattedWinRate(x.soloqWins, x.soloqLosses) <= 70,
-                                    'text-white': getFormattedWinRate(x.soloqWins, x.soloqLosses) >= 50 && getFormattedWinRate(x.soloqWins, x.soloqLosses) <= 59,
-                                    'text-red-500': getFormattedWinRate(x.soloqWins, x.soloqLosses) < 50
-                                }">
-                                {{ getFormattedWinRate(x.soloqWins, x.soloqLosses) }}%
-                                </span>
+                            <div>
+                                <div class="mt-1">
+                                    <span class="">{{x.rank | titlecase}}<span class="ml-2">{{romanToLatin(x.rankTierFlex)}}</span></span>
+                                    {{x.flexqWins}}<span class="text-md text-[var(--grey1)] ml-1">W</span>
+                                    {{x.flexqLosses}}<span class="text-md text-[var(--grey1)] ml-1">L</span>
+                                </div>
+                                <div class="mt-1">
+                                    {{x.flexqLP}}<span class="text-base text-[var(--grey1)] ml-1">LP</span>
+                
+                                    <span [ngClass]="{
+                                        'text-yellow-400': getFormattedWinRate(x.flexqWins, x.flexqLosses) > 70,
+                                        'text-blue-500': getFormattedWinRate(x.flexqWins, x.flexqLosses) > 60 && getFormattedWinRate(x.flexqWins, x.flexqLosses) <= 70,
+                                        'text-white': getFormattedWinRate(x.flexqWins, x.flexqLosses) >= 50 && getFormattedWinRate(x.flexqWins, x.flexqLosses) <= 59,
+                                        'text-red-500': getFormattedWinRate(x.flexqWins, x.flexqLosses) < 50
+                                    }">
+                                    {{ getFormattedWinRate(x.flexqWins, x.flexqLosses) }}%
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>

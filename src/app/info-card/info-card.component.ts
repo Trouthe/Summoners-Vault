@@ -121,8 +121,9 @@ export class InfoCardComponent {
             flexqWins: flexqWins, flexqLosses: flexqLosses, flexqLP: flexqLP,
           });
         }
-      this.loading = false;
-
+        
+        // end
+        this.loading = false;
       });
 
       console.log(this.combinedAccounts);

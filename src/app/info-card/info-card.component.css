@@ -1,0 +1,32 @@
+* {font-family: 'Roboto Mono', monospace}
+
+.acc::before {
+    content: "";
+    position: absolute;
+    margin-top: -0.75rem; margin-left: -1.4rem;
+    height: 7.8em;
+    width: 0.7rem;
+    background-color: rgb(59 130 246);
+}
+
+.profileIcon {
+    padding: 0.1rem;
+    background-color: var(--gold5);
+    border-color: var(--gold3);
+    border-style: inset;
+    border-width: 2px;
+    border-radius: 1rem;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.profileLvl {
+    margin-top: -0.75rem;
+    padding-left: 0.30rem; padding-right: 0.30rem;
+    padding-top: 0.10rem; padding-bottom: 0.10rem;
+    background-color: var(--gold7);
+    border-color: var(--gold3);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 0.75rem;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+}

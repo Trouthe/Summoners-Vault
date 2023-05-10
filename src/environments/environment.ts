@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api_key: 'RGAPI-eab67407-e4c0-4516-a7e8-850957aedabe',
+  user_information: 'https://spicysalmon.000webhostapp.com/getUsers.php',
+  accounts_information: 'https://spicysalmon.000webhostapp.com/getAccounts.php',
+  basicInfo: 'https://spicysalmon.000webhostapp.com/basicInfo.php',
+  rankedInfo: 'https://spicysalmon.000webhostapp.com/rankedInfo.php',
 };
 
 /*

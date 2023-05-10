@@ -1,0 +1,75 @@
+<!-- <form (ngSubmit)="onSubmit()">
+    <label>
+        Email/Username:
+        <input type="text" name="email" [(ngModel)]="username">
+    </label>
+    <label>
+        Password:
+        <input type="password" name="password" [(ngModel)]="password">
+    </label>
+    <button type="submit">Login</button>
+</form> -->
+
+<style>
+    /*remove custom style*/
+    .screen-divider {
+        border-top: 100rem solid white;
+        border-left: 15rem solid transparent;
+    }
+</style>
+<div class="relative min-h-screen flex ">
+    <div
+        class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 ">
+        <div class="sm:w-1/2 xl:w-2/5 h-full hidden md:flex flex-auto items-center justify-start p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative"
+            style="background-image: url(../../assets/high-noon\ thresh.jpg);">
+            <div class="absolute bg-gradient-to-b from-blue-900 to-gray-900 opacity-75 inset-0 z-0"></div>
+            <div class="absolute screen-divider right-0 w-16 h-screen">
+                <div></div>
+            </div>
+            <a href="#" target="_blank" class="flex absolute top-5 text-center text-gray-100 focus:outline-none">
+                <p class="text-xl font-black">Summoner's Vault</p>
+            </a>
+            
+            <div class="w-full max-w-3xl z-10">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eba2e93e-e25f-4528-8235-27eb869406ab/dcde5qi-1143cbac-e833-45a9-b78e-5e63cddc88f6.png/v1/fill/w_1024,h_869/rammus__okay__by_ieket_dcde5qi-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODY5IiwicGF0aCI6IlwvZlwvZWJhMmU5M2UtZTI1Zi00NTI4LTgyMzUtMjdlYjg2OTQwNmFiXC9kY2RlNXFpLTExNDNjYmFjLWU4MzMtNDVhOS1iNzhlLTVlNjNjZGRjODhmNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dPQhEEH2B3SNkLasPCmWhYDfGeqZ6ybDNlssOVMiNRc"
+                class="h-96 mx-auto my-20"
+                style="filter: drop-shadow(0 0 4rem rgba(255,255,255,.40));">
+                <div class="sm:text-sm xl:text-2xl text-gray-400 font-normal text-left">Your account marketplace and personal potfolio database to secure your personal information and never worry about forgetting your gaming data again.</div>
+            </div>
+        </div>
+        <div class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white">
+            <div class="max-w-md w-full space-y-8">
+                <div class="text-center">
+                    <h2 class="mt-6 text-3xl font-bold text-gray-900">Login to Your Account</h2>
+                    <hr class="my-12 border-0 bg-gradient-to-r from-transparent via-[var(--gold4)] to-transparent rounded-full" style="height:3px"/>
+                </div>
+                <form class="mt-8 space-y-6" action="#" method="POST">
+                    <input type="hidden" name="remember" value="true">
+                    <div class="relative">
+                        <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
+                        <input class=" w-full text-black bg-transparent px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-[var(--gold4)]"
+                            type="email" placeholder="mail@provider.com">
+                    </div>
+                    <div class="mt-8 content-center">
+                        <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Password</label>
+                        <input
+                            class="w-full text-black bg-transparent content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-[var(--gold4)]"
+                            type="password" placeholder="Enter your password">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm">
+                            <a href="#" class="text-indigo-400 hover:text-blue-500">Forgot your password?</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="transition-all ease-in-out hover:scale-105 w-full flex justify-center bg-[var(--blue4)] hover:bg-[var(--blue2)] text-gray-100 p-4 rounded-full font-semibold shadow-lg cursor-pointer duration-500">Sign in</button>
+                    </div>
+                    <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
+                        <span>Don't have an account?</span>
+                        <a href="#" class="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Signup</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -73,6 +73,17 @@
                             </div>
                         </div>
                     </div>
+
+                    <div *ngIf="!x.flexqWins && !x.flexqLosses"> 
+                        UNRANKED
+                        <div class="flex flex-row text-lg ml-10">
+                            <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
+                            <div>
+                                <img width="85px" height="100px" src="https://m.deeplol.gg/images/Emblem_UNRANKED.png" alt="Unranked Emblem"
+                                     style="margin-left: -.75rem;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

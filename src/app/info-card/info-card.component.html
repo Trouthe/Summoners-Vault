@@ -2,7 +2,7 @@
     <app-spinner></app-spinner>
 </div>
 <div *ngFor="let x of combinedAccounts">
-    <div *ngIf="x.userID==1" class="acc w-full my-3 ml-3 p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white">
+    <div *ngIf="x.userID==1" class="acc w-full my-3 ml-7 p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white">
         <div class="flex flex-row">
             <div class="flex flex-col">
                 <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png" 
@@ -11,8 +11,7 @@
                 <div class="mx-auto profileLvl">{{x.summonerLevel}}</div>
             </div>
             <div class="ml-7 text-xl flex flex-col">
-                {{x.accIGN}}
-
+                <p>{{x.accIGN}}<span class="text-sm ml-2 opacity-25">[{{x.accServer}}]</span></p>
                 <!-- RANKED INFO -->
                 <div class="flex flex-row">
                     <!-- SOLO Q INFO -->
@@ -25,8 +24,8 @@
                         <div>
                             <div class="mt-1">
                                 <span class="">{{x.rank | titlecase}}<span class="ml-2">{{romanToLatin(x.rankTier)}}</span></span>
-                                {{x.soloqWins}}<span class="text-md text-[var(--grey1)] ml-1">W</span>
-                                {{x.soloqLosses}}<span class="text-md text-[var(--grey1)] ml-1">L</span>
+                                {{x.soloqWins}}<span class="text-base text-[var(--grey1)] ml-1">W</span>
+                                {{x.soloqLosses}}<span class="text-base text-[var(--grey1)] ml-1">L</span>
                             </div>
                             <div class="mt-1">
                                 {{x.soloqLP}}<span class="text-base text-[var(--grey1)] ml-1">LP</span>
@@ -58,8 +57,8 @@
                             <div>
                                 <div class="mt-1">
                                     <span class="">{{x.rank | titlecase}}<span class="ml-2">{{romanToLatin(x.rankTierFlex)}}</span></span>
-                                    {{x.flexqWins}}<span class="text-md text-[var(--grey1)] ml-1">W</span>
-                                    {{x.flexqLosses}}<span class="text-md text-[var(--grey1)] ml-1">L</span>
+                                    {{x.flexqWins}}<span class="text-base text-[var(--grey1)] ml-1">W</span>
+                                    {{x.flexqLosses}}<span class="text-base text-[var(--grey1)] ml-1">L</span>
                                 </div>
                                 <div class="mt-1">
                                     {{x.flexqLP}}<span class="text-base text-[var(--grey1)] ml-1">LP</span>
@@ -102,6 +101,16 @@
                                 Unranked
                             </div>
                         </div>
+                    </div>
+
+                    <!-- DIVIDER -->
+                    <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
+                    
+                    <!-- currencies + champs -->
+                    <div class="flex flex-col text-base ml-10">
+                        <p>{{x.primaryCurrency}}</p>
+                        <p>{{x.secondaryCurrency}}</p>
+                        <p>{{x.champs}}</p>
                     </div>
                 </div>
             </div>

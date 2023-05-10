@@ -61,7 +61,7 @@ export class InfoCardComponent {
             soloqWins, soloqLosses, soloqLP,
             flexqWins, flexqLosses, flexqLP;
 
-          console.log(rankResults);
+          // console.log(rankResults);
           // Filter ranks
           if (rankResults[i].length > 0) {
             for (let j = 0; j < rankResults[i].length; j++) {

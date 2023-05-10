@@ -4,12 +4,6 @@
 @tailwind utilities;
 
 :root {
-    --navy: #37306B;
-    --navy-1: #28234d;
-    --purple: #66347F;
-    --maroon: #9E4784;
-    --peach: #D27685;
-
     --gold1: #F0E6D2;
     --gold2: #C8AA6E;
     --gold3: #C8AA6E;
@@ -34,4 +28,5 @@
     --grey3: #1E2328;
     --grey-cool: #1E282D;
     --black-hextech: #010A13;
+    --wd:#122a56;
 }

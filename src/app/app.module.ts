@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { AccInfoComponent } from './acc-info/acc-info.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
     AccInfoComponent,
     InfoCardComponent,
     LoginpageComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

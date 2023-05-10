@@ -1,5 +1,8 @@
+<div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div>
 <div *ngFor="let x of combinedAccounts">
-    <div *ngIf="x.userID==1" class="acc my-3 container p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white" style="width: 100vw;">
+    <div *ngIf="x.userID==1" class="acc w-full my-3 ml-3 p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white">
         <div class="flex flex-row">
             <div class="flex flex-col">
                 <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png" 
@@ -74,13 +77,29 @@
                         </div>
                     </div>
 
+                    <!-- If they don't exist (unranked) -->
                     <div *ngIf="!x.flexqWins && !x.flexqLosses"> 
-                        UNRANKED
                         <div class="flex flex-row text-lg ml-10">
                             <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
                             <div>
                                 <img width="85px" height="100px" src="https://m.deeplol.gg/images/Emblem_UNRANKED.png" alt="Unranked Emblem"
                                      style="margin-left: -.75rem;">
+                            </div>
+                            <div class="my-auto">
+                                Unranked
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!x.soloqWins && !x.soloqLosses"> 
+                        <div class="flex flex-row text-lg ml-10">
+                            <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">SOLO Q</div>
+                            <div>
+                                <img width="85px" height="100px" src="https://m.deeplol.gg/images/Emblem_UNRANKED.png" alt="Unranked Emblem"
+                                     style="margin-left: -.75rem;">
+                            </div>
+                            <div class="my-auto">
+                                Unranked
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin, map } from 'rxjs';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-info-card',
@@ -13,6 +13,8 @@ export class InfoCardComponent {
   accounts: any[] = [];
   apiAccounts: any[] = [];
   combinedAccounts: any[] = [];
+
+  loading: boolean = true;
 
   constructor(private http: HttpClient) { }
 
@@ -119,6 +121,8 @@ export class InfoCardComponent {
             flexqWins: flexqWins, flexqLosses: flexqLosses, flexqLP: flexqLP,
           });
         }
+      this.loading = false;
+
       });
 
       console.log(this.combinedAccounts);

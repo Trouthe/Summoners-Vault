@@ -1,5 +1,5 @@
 <div *ngFor="let x of combinedAccounts">
-    <div *ngIf="x.userID==1" class="acc my-3 container p-3 h-auto bg-[var(--grey-cool)] text-white" style="width: 100vw;">
+    <div *ngIf="x.userID==1" class="acc my-3 container p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white" style="width: 100vw;">
         <div class="flex flex-row">
             <div class="flex flex-col">
                 <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png" 
@@ -72,8 +72,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <img width="150px" class="m-0 p-0" src="https://opgg-static.akamaized.net/images/medals_new/{{x.rank | lowercase}}.png" alt="Ranked Emblem"> -->
         </div>
-        <!-- <img src="../../assets/ranked-emblems/{x.accRank}" alt="" srcset=""> -->
     </div>
 </div>

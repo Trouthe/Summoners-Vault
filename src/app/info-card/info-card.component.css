@@ -3,7 +3,7 @@
 .acc::before {
     content: "";
     position: absolute;
-    margin-top: -0.75rem; margin-left: -1.4rem;
+    margin-top: -0.75rem; margin-left: -1.75rem;
     height: 7.8em;
     width: 0.7rem;
     background-color: rgb(59 130 246);

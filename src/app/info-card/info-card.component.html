@@ -18,7 +18,7 @@
                     <div class="flex flex-row text-lg">
                         <div style="transform: rotate(-90deg); margin-right: -27px; margin-top: 0px; opacity: 0.4; font-weight: lighter;" class="text-sm">SOLO Q</div>
                         <div>
-                            <img width="85px" height="100px" src="https://static.bigbrain.gg/assets/lol/s12_rank_icons/{{x.rank | lowercase}}.png" alt="Ranked Emblem"
+                            <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rank}}.png" alt="Ranked Emblem"
                                  style="margin-left: -.75rem;">
                         </div>
                         <div>
@@ -51,7 +51,7 @@
                         <div class="flex flex-row text-lg ml-10">
                             <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
                             <div>
-                                <img width="85px" height="100px" src="https://static.bigbrain.gg/assets/lol/s12_rank_icons/{{x.rankFlex | lowercase}}.png" alt="Ranked Emblem"
+                                <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rankFlex}}.png" alt="Ranked Emblem"
                                      style="margin-left: -.75rem;">
                             </div>
                             <div>
@@ -81,7 +81,7 @@
                         <div class="flex flex-row text-lg ml-10">
                             <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
                             <div>
-                                <img width="85px" height="100px" src="https://m.deeplol.gg/images/Emblem_UNRANKED.png" alt="Unranked Emblem"
+                                <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png" alt="Unranked Emblem"
                                      style="margin-left: -.75rem;">
                             </div>
                             <div class="my-auto">
@@ -94,7 +94,7 @@
                         <div class="flex flex-row text-lg ml-10">
                             <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">SOLO Q</div>
                             <div>
-                                <img width="85px" height="100px" src="https://m.deeplol.gg/images/Emblem_UNRANKED.png" alt="Unranked Emblem"
+                                <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png" alt="Unranked Emblem"
                                      style="margin-left: -.75rem;">
                             </div>
                             <div class="my-auto">
@@ -108,10 +108,25 @@
                     
                     <!-- currencies + champs -->
                     <div class="flex flex-col text-base ml-10">
-                        <p>{{x.primaryCurrency}}</p>
-                        <p>{{x.secondaryCurrency}}</p>
-                        <p>{{x.champs}}</p>
+                        <div class="flex flex-row">
+                            <img class="w-5 h-5 my-auto mr-1" src="../../assets/BE_icon.png">
+                            {{x.primaryCurrency}}
+                        </div>
+                        <div class="flex flex-row">
+                            <img class="w-5 h-5 my-auto mr-1" src="../../assets/OE_icon.png">
+                            {{x.secondaryCurrency}}
+                        </div>
+                        <div class="flex flex-row">
+                            <img class="w-5 h-5 my-auto mr-1 invert" src="../../assets/helmet.png">
+                            {{x.champs}}
+                        </div>
                     </div>
+
+                    <!-- DIVIDER -->
+                    <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
+                    
+                    <!-- Copy acc logins -->
+                    <button class="my-auto button ml-10" (click)="copyToClipboard(x.username + '---' + x.password)"></button>
                 </div>
             </div>
         </div>

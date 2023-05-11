@@ -3,7 +3,8 @@
 .acc::before {
     content: "";
     position: absolute;
-    margin-top: -0.75rem; margin-left: -1.75rem;
+    margin-top: -0.75rem;
+    margin-left: -1.75rem;
     height: 7.8em;
     width: 0.7rem;
     background-color: rgb(59 130 246);
@@ -21,12 +22,68 @@
 
 .profileLvl {
     margin-top: -0.75rem;
-    padding-left: 0.30rem; padding-right: 0.30rem;
-    padding-top: 0.10rem; padding-bottom: 0.10rem;
+    padding-left: 0.30rem;
+    padding-right: 0.30rem;
+    padding-top: 0.10rem;
+    padding-bottom: 0.10rem;
     background-color: var(--gold7);
     border-color: var(--gold3);
     border-style: outset;
     border-width: 2px;
     border-radius: 0.75rem;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+}
+
+
+.button:focus {outline: none}
+.button:active {scale: 0.95}
+.button {
+    position: relative;
+    background-color: transparent;
+    color: #e8e8e8;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 10px;
+    width: 150px;
+    height: 45px;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(51, 51, 51, 0.2);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button::before {
+    content: "Copied!";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(135deg, var(--blue4), var(--blue5));
+    transform: translate(0%, 102%);
+    z-index: 99;
+    position: relative;
+    transform-origin: bottom;
+    transition: all 2s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button::after {
+    content: "Copy Logins";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform-origin: top;
+    transform: translate(0%, -100%);
+    transition: all 2s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:active:before {
+    transform: translate(0%, 0%);
+    transition: 0s;
 }

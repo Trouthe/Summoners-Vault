@@ -6,9 +6,8 @@ import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-info-card',
   templateUrl: './info-card.component.html',
-  styleUrls: ['./info-card.component.css']
+  styleUrls: ['./info-card.component.css'],
 })
-
 export class InfoCardComponent {
   accounts: any[] = [];
   apiAccounts: any[] = [];
@@ -16,10 +15,10 @@ export class InfoCardComponent {
 
   loading: boolean = true;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any[]>(environment.accounts_information).subscribe(Data => {
+    this.http.get<any[]>(environment.accounts_information).subscribe((Data) => {
       this.accounts = Data;
       this.filter();
     });
@@ -31,48 +30,59 @@ export class InfoCardComponent {
     for (let i = 0; i < this.accounts.length; i++) {
       let API_BasicInfo =
         environment.basicInfo +
-        '?summoner_name=' + encodeURIComponent(this.accounts[i].accIGN) +
-        '&region=' + encodeURIComponent(this.accounts[i].accServer);
+        '?summoner_name=' +
+        encodeURIComponent(this.accounts[i].accIGN) +
+        '&region=' +
+        encodeURIComponent(this.accounts[i].accServer);
 
       requests.push(this.http.get<any[]>(API_BasicInfo));
       // console.log(API_BasicInfo);
     }
 
-    forkJoin(requests).subscribe(results => {
+    forkJoin(requests).subscribe((results) => {
       this.apiAccounts = results;
       const secondaryRequests = [];
 
       for (let i = 0; i < this.accounts.length; i++) {
         let API_RankInfo =
           environment.rankedInfo +
-          '?summoner_id=' + encodeURIComponent(this.apiAccounts[i].id) +
-          '&region=' + encodeURIComponent(this.accounts[i].accServer);
+          '?summoner_id=' +
+          encodeURIComponent(this.apiAccounts[i].id) +
+          '&region=' +
+          encodeURIComponent(this.accounts[i].accServer);
 
         secondaryRequests.push(this.http.get<any[]>(API_RankInfo));
         // console.log(API_RankInfo);
       }
 
-      forkJoin(secondaryRequests).subscribe(rankResults => {
+      forkJoin(secondaryRequests).subscribe((rankResults) => {
         for (let i = 0; i < rankResults.length; i++) {
           let summonerLevel = this.apiAccounts[i].summonerLevel;
           let summonerID = this.apiAccounts[i].id;
           let profileIconID = this.apiAccounts[i].profileIconId;
-          let rank, rankTier, rankFlex, rankTierFlex,
-            soloqWins, soloqLosses, soloqLP,
-            flexqWins, flexqLosses, flexqLP;
+          let rank,
+            rankTier,
+            rankFlex,
+            rankTierFlex,
+            soloqWins,
+            soloqLosses,
+            soloqLP,
+            flexqWins,
+            flexqLosses,
+            flexqLP;
 
           // console.log(rankResults);
           // Filter ranks
           if (rankResults[i].length > 0) {
             for (let j = 0; j < rankResults[i].length; j++) {
-              if (rankResults[i][j].queueType === "RANKED_SOLO_5x5") {
+              if (rankResults[i][j].queueType === 'RANKED_SOLO_5x5') {
                 rank = rankResults[i][j].tier;
                 rankTier = rankResults[i][j].rank;
 
                 soloqWins = rankResults[i][j].wins;
                 soloqLosses = rankResults[i][j].losses;
                 soloqLP = rankResults[i][j].leaguePoints;
-              } else if (rankResults[i][j].queueType === "RANKED_FLEX_SR") {
+              } else if (rankResults[i][j].queueType === 'RANKED_FLEX_SR') {
                 rankFlex = rankResults[i][j].tier;
                 rankTierFlex = rankResults[i][j].rank;
 
@@ -82,11 +92,10 @@ export class InfoCardComponent {
               }
             }
           }
-          
 
           this.combinedAccounts.push({
             userID: this.accounts[i].userID,
-            accID: "AC" + this.accounts[i].acc_id,
+            accID: 'AC' + this.accounts[i].acc_id,
             accIGN: this.accounts[i].accIGN,
             forsale: this.accounts[i].acctosell,
 
@@ -99,29 +108,44 @@ export class InfoCardComponent {
             primaryCurrency: this.accounts[i].accPriCurr,
             secondaryCurrency: this.accounts[i].accSecCurr,
 
-            type: this.accounts[i].accLvlType === 'h' ? 'Handlevel' :
-              this.accounts[i].accLvlType === 'b' ? 'Botted' :
-                this.accounts[i].accLvlType,
+            type:
+              this.accounts[i].accLvlType === 'h'
+                ? 'Handlevel'
+                : this.accounts[i].accLvlType === 'b'
+                ? 'Botted'
+                : this.accounts[i].accLvlType,
 
-            verification: this.accounts[i].accVerification = 1 ? 'Verified' :
-              this.accounts[i].accVerification = 0 ? 'Unverified' :
-                this.accounts[i].accVerification,
+            verification: (this.accounts[i].accVerification = 1
+              ? 'Verified'
+              : (this.accounts[i].accVerification = 0
+                  ? 'Unverified'
+                  : this.accounts[i].accVerification)),
 
-            accServer: this.accounts[i].accServer === 'EUN1' ? 'EUNE' :
-              this.accounts[i].accServer === 'EUW1' ? 'EUW' :
-                this.accounts[i].accServer === 'NA1' ? 'NA' :
-                  this.accounts[i].accServer,
+            accServer:
+              this.accounts[i].accServer === 'EUN1'
+                ? 'EUNE'
+                : this.accounts[i].accServer === 'EUW1'
+                ? 'EUW'
+                : this.accounts[i].accServer === 'NA1'
+                ? 'NA'
+                : this.accounts[i].accServer,
 
             summonerLevel: summonerLevel,
             summonerID: summonerID,
             profileIconId: profileIconID,
-            rank: rank, rankFlex: rankFlex,
-            rankTier: rankTier, rankTierFlex: rankTierFlex,
-            soloqWins: soloqWins, soloqLosses: soloqLosses, soloqLP: soloqLP,
-            flexqWins: flexqWins, flexqLosses: flexqLosses, flexqLP: flexqLP,
+            rank: rank,
+            rankFlex: rankFlex,
+            rankTier: rankTier,
+            rankTierFlex: rankTierFlex,
+            soloqWins: soloqWins,
+            soloqLosses: soloqLosses,
+            soloqLP: soloqLP,
+            flexqWins: flexqWins,
+            flexqLosses: flexqLosses,
+            flexqLP: flexqLP,
           });
         }
-        
+
         // end
         this.loading = false;
       });
@@ -132,7 +156,7 @@ export class InfoCardComponent {
 
   // Filter decimal places in winrate
   getFormattedWinRate(wins: number, losses: number): any {
-    const winRate = wins / (wins + losses) * 100;
+    const winRate = (wins / (wins + losses)) * 100;
     if (Number.isInteger(winRate)) {
       return winRate.toFixed(0);
     } else if (winRate == 0) {
@@ -173,4 +197,6 @@ export class InfoCardComponent {
     }
     return result;
   }
+
+  copyToClipboard(text: string) {navigator.clipboard.writeText(text)}
 }

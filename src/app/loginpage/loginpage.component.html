@@ -43,18 +43,21 @@
                     <h2 class="mt-6 text-3xl font-bold text-gray-900">Login to Your Account</h2>
                     <hr class="my-12 border-0 bg-gradient-to-r from-transparent via-[var(--gold4)] to-transparent rounded-full" style="height:3px"/>
                 </div>
-                <form class="mt-8 space-y-6" action="#" method="POST">
+                <form class="mt-8 space-y-6" action="#" [formGroup]="loginForm" (ngSubmit)="onSubmit()" method="POST">
                     <input type="hidden" name="remember" value="true">
                     <div class="relative">
                         <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
                         <input class=" w-full text-black bg-transparent px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-[var(--gold4)]"
-                            type="email" placeholder="mail@provider.com">
+                            type="email" formControlName="email" required placeholder="mail@provider.com">
+                            <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
+                            <div *ngIf="loginForm.get('email')?.hasError('email')">Invalid email</div>
                     </div>
                     <div class="mt-8 content-center">
                         <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Password</label>
                         <input
                             class="w-full text-black bg-transparent content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-[var(--gold4)]"
-                            type="password" placeholder="Enter your password">
+                            type="password" formControlName="password" placeholder="Enter your password">
+                            <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="text-sm">
@@ -62,7 +65,9 @@
                         </div>
                     </div>
                     <div>
-                        <button type="submit" class="transition-all ease-in-out hover:scale-105 w-full flex justify-center bg-[var(--blue4)] hover:bg-[var(--blue2)] text-gray-100 p-4 rounded-full font-semibold shadow-lg cursor-pointer duration-500">Sign in</button>
+                        <button type="submit" class="transition-all ease-in-out hover:scale-105 w-full flex justify-center bg-[var(--blue4)] hover:bg-[var(--blue2)] text-gray-100 p-4 rounded-full font-semibold shadow-lg cursor-pointer duration-500">
+                            Sign in
+                        </button>
                     </div>
                     <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
                         <span>Don't have an account?</span>

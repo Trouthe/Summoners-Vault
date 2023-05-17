@@ -26,8 +26,13 @@ export class AccInfoComponent {
     ) { }
 
   ngOnInit(): void {
-    if (!this.uid) {
+    // is logged in?
+    if (!this.authService.isloggedIn()) 
       this.router.navigate(['/login']);
-    }
+  }
+
+  logoutFunction() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

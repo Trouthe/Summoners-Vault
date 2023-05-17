@@ -30,6 +30,3 @@
     --black-hextech: #010A13;
     --wd:#122a56;
 }
-
-.active {background: linear-gradient(-90deg, rgba(18,42,86,0) 24%, rgba(47,80,140,1) 91%)}
-.inactive:hover {background: linear-gradient(-90deg, rgba(18,42,86,0) 24%, rgba(47,80,140,1) 91%)}

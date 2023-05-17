@@ -8,7 +8,10 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private uid!:string | null;
+  // private uid!:string | null;
+
+  // TESTING PUPOSES
+  private uid:string | null = '1';
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +35,7 @@ export class AuthService {
   setUID (uid:string): void {this.uid = uid}
   getUID (): string | null {return this.uid}
 
+  // reset uid
   logout(): void {this.uid = null}
 
   isloggedIn ():boolean {

@@ -3,26 +3,36 @@
     <div class="m-0 p-0 flex flex-row items-center justify-center bg-gradient-to-bl from-transparent from-5% via-[var(--blue7)] via-10% to-[var(--blue7)]">
 
         <!-- Left panel -->
-        <div class="w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
+        <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
 
-            <div class="flex flex-row items-center justify-center p-5 text-white">
+            <div class="flex p-5 text-white">
                 <h3 class="font-bold text-2xl">Extra Actions</h3>
             </div>
 
             <!-- Add accounts -->
-            <div class="py-5 text-white inactive">
-                <a href="" class="flex flex-row items-center justify-center">
+            <div class="flex w-full items-center justify-center text-white">
+                <a href="" class="py-5 flex flex-row items-center justify-center inactive w-full">
                     <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account" style="filter: invert();">
                     <p class="pl-3">Add Account</p>
                 </a>
             </div>
 
             <!-- My Accounts -->
-            <div class="py-5 text-white active">
-                <a routerLink="/accountinfo" class="flex flex-row items-center justify-center">
-                    <img width="30px" src="../../assets/icons/list.png" alt="Add Account" style="filter: invert();">
+            <div class="flex w-full items-center justify-center text-white">
+                <a routerLink="/accountinfo" class="py-5 flex flex-row items-center justify-center active w-full">
+                    <img width="30px" src="../../assets/icons/list.png" alt="Your Accounts" style="filter: invert();">
                     <p class="pl-3">Your Accounts</p>
                 </a>
+            </div>
+
+            <!-- Logout -->
+            <div class="flex mt-auto w-full items-center justify-center text-white">
+                <button (click)="logoutFunction()" class="inactive py-5 w-full flex flex-row items-center justify-center">
+                    <img width="32px" src="../../assets/icons/profile.png" alt="Logout" style="filter: invert();">
+                </button>
+                <button (click)="logoutFunction()" class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
+                    <img width="32px" src="../../assets/icons/logout.png" alt="Logout" style="filter: invert();">
+                </button>
             </div>
         </div>
         

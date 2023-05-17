@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-info-card',
@@ -15,10 +16,26 @@ export class InfoCardComponent {
 
   loading: boolean = true;
 
-  constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient, private auth: AuthService) {}
+  uid:string | null = this.auth.getUID();
 
   ngOnInit(): void {
-    this.http.get<any[]>(environment.accounts_information).subscribe((Data) => {
+    
+    this.uid = this.auth.getUID();
+    this.getDataByUserID(this.uid);
+    
+  }
+
+  getDataByUserID (userID: string | null) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    const data = new FormData();
+    if (userID) {
+      data.set('userID', userID);
+      console.log(data.toString());
+    }
+
+    this.http.post<any[]>(environment.accounts_information, data).subscribe((Data) => {
       this.accounts = Data;
       this.filter();
     });

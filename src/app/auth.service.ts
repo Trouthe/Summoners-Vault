@@ -30,7 +30,7 @@ export class AuthService {
 
   // set/get
   setUID (uid:string): void {this.uid = uid}
-  getUID (uid:string): string {return uid}
+  getUID (): string | null {return this.uid}
 
   logout(): void {this.uid = null}
 

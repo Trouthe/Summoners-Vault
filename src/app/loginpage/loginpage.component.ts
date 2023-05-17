@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+interface LoginResponse {
+  exists: boolean;
+  uid?: string;
+}
 
 @Component({
   selector: 'app-loginpage',
@@ -15,7 +18,11 @@ export class LoginpageComponent {
   password!: string;
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder, 
+    private router: Router
+    ) { }
 
   ngOnInit ():void {
     this.loginForm = this.formBuilder.group({
@@ -30,8 +37,17 @@ export class LoginpageComponent {
       this.authService.login(email, password)
       .subscribe(
         response => {
+          const _verif = (response as any).exists;
+          const _uid = (response as any).uid;
           // Handle the successful login response
+          // this.authService.setUID(response.uid);
           console.log('Login successful');
+          this.authService.setUID(_uid);
+          if (_verif) {
+            this.router.navigate(['/accountinfo']);
+          } else {
+            this.router.navigate(['/login']);
+          }
           console.log(response);
         },
         error => {

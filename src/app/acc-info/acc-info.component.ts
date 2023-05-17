@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -18,10 +18,16 @@ export class AccInfoComponent {
   //   });
   // }
 
-  loggedInUser!: string;
+  uid: string | null = this.authService.getUID();
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    if (!this.uid) {
+      this.router.navigate(['/login']);
+    }
   }
 }

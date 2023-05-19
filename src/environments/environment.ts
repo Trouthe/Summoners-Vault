@@ -11,6 +11,7 @@ export const environment = {
   login: 'https://spicysalmon.000webhostapp.com/login.php',
   basicInfo: 'https://spicysalmon.000webhostapp.com/basicInfo.php',
   rankedInfo: 'https://spicysalmon.000webhostapp.com/rankedInfo.php',
+  masteryInfo: 'https://spicysalmon.000webhostapp.com/masteryInfo.php',
 };
 
 /*

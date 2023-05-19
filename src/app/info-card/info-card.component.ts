@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
+import { forkJoin, take } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { ServicesService } from '../services.service';
 
@@ -17,20 +17,17 @@ export class InfoCardComponent {
   combinedAccounts: any[] = [];
   expandedStates: boolean[] = [];
 
-  // loading: boolean = true;
-
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private serv: ServicesService
-    ) {}
+    private serv: ServicesService,
+  ) {}
+
   uid:string | null = this.auth.getUID();
 
   ngOnInit(): void {
-    
     this.uid = this.auth.getUID();
     this.getDataByUserID(this.uid);
-    
   }
 
   getDataByUserID (userID: string | null) {
@@ -116,7 +113,55 @@ export class InfoCardComponent {
             }
           }
 
+          let API_ChampionMastery =
+            environment.masteryInfo +
+            '?summoner_id=' +
+            encodeURIComponent(this.apiAccounts[i].id) +
+            '&region=' +
+            encodeURIComponent(this.accounts[i].accServer);
+
+          const championIds: any[] = [];
+          const championPoints: any[] = [];
+          const championLevels: any[] = [];
+          let components: any[] = [];
+          let champions;
+          this.http.get<any[]>(API_ChampionMastery).pipe (
+            take(3)
+          ).subscribe (
+            data => {
+              for (let j = 0; j<3; j++) {
+                championIds.push(data[j].championId);
+                championPoints.push(data[j].championPoints);
+                championLevels.push(data[j].championLevel);
+                
+                // this.http.get<any[]>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
+                //   .subscribe(components => {
+                //     comp = components.filter(component => component.key === championIds[j]);
+                //     console.log(championIds[j])
+                //   });
+
+                this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
+                .subscribe(
+                  (response: any) => {
+                    champions = Object.values<any>(response.data);
+                    let filter = champions.filter (
+                      (obj) => {
+                        if (obj.key=='142') {
+                          console.log(obj.name)
+                        }
+                        return obj.key == '142'
+                      }
+                    )
+                  }
+                );
+              }
+            }
+          );
+
           this.combinedAccounts.push({
+            championIds: championIds,
+            championPoints: championPoints,
+            championLevels: championLevels,
             userID: this.accounts[i].userID,
             accID: 'AC' + this.accounts[i].acc_id,
             accIGN: this.accounts[i].accIGN,

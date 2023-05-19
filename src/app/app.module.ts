@@ -28,7 +28,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

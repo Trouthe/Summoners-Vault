@@ -22,7 +22,7 @@ export class LoginpageComponent {
     private authService: AuthService,
     private formBuilder: FormBuilder, 
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit ():void {
     this.loginForm = this.formBuilder.group({

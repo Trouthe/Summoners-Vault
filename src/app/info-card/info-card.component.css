@@ -1,6 +1,6 @@
 * {font-family: 'Roboto Mono', monospace}
 
-.acc::before {
+/* .acc::before {
     content: "";
     position: absolute;
     margin-top: -0.75rem;
@@ -8,7 +8,7 @@
     height: 7.8em;
     width: 0.7rem;
     background-color: rgb(59 130 246);
-}
+} */
 
 .profileIcon {
     padding: 0.1rem;
@@ -70,7 +70,7 @@
 }
 
 .button::after {
-    content: "Copy Logins";
+    content: "User/Pass";
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,4 +86,14 @@
 .button:active:before {
     transform: translate(0%, 0%);
     transition: 0s;
+}
+
+.spoiler {
+    background-color: black;
+    color: transparent;
+}
+
+.spoiler:hover {
+    color: white;
+    cursor: pointer;
 }

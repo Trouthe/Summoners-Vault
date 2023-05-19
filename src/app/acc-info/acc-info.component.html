@@ -37,7 +37,10 @@
         </div>
         
         <!-- Cards -->
-        <div class=" overflow-hidden m-0 p-0 flex items-center justify-center h-screen w-screen">
+        <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
+            <div *ngIf="loading" class="flex justify-center items-center h-screen overflow-hidden">
+                <app-spinner></app-spinner>
+            </div>
             <app-info-card></app-info-card>
         </div>
     </div>

@@ -3,21 +3,27 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { ServicesService } from '../services.service';
 
 @Component({
   selector: 'app-info-card',
   templateUrl: './info-card.component.html',
   styleUrls: ['./info-card.component.css'],
 })
+
 export class InfoCardComponent {
   accounts: any[] = [];
   apiAccounts: any[] = [];
   combinedAccounts: any[] = [];
+  expandedStates: boolean[] = [];
 
-  loading: boolean = true;
+  // loading: boolean = true;
 
-
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private serv: ServicesService
+    ) {}
   uid:string | null = this.auth.getUID();
 
   ngOnInit(): void {
@@ -164,7 +170,8 @@ export class InfoCardComponent {
         }
 
         // end
-        this.loading = false;
+        this.serv.setLoading(false);
+        this.expandedStates = new Array(this.combinedAccounts.length).fill(false);
       });
 
       console.log(this.combinedAccounts);

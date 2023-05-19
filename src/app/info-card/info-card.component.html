@@ -1,18 +1,22 @@
-<div *ngIf="loading">
+<!-- <div *ngIf="loading">
     <app-spinner></app-spinner>
-</div>
-<div *ngFor="let x of combinedAccounts">
-    <div *ngIf="x.userID==uid" class="acc w-full my-3 ml-7 p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white">
-        <div class="flex flex-row">
+</div> -->
+<div *ngFor="let x of combinedAccounts; let i=index">
+    <div *ngIf="x.userID==uid" class="acc my-3 mx-7 p-3 pl-5 h-auto bg-[var(--grey-cool)] text-white"
+        >
+        <div class="flex flex-row mx-auto"
+            (click)="expandedStates[i] = !expandedStates[i]">
+            <!-- Icon Section -->
             <div class="flex flex-col">
                 <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png" 
                      width="80px"
                      class="profileIcon">
                 <div class="mx-auto profileLvl">{{x.summonerLevel}}</div>
             </div>
+            <!-- Account Section -->
             <div class="ml-7 text-xl flex flex-col">
                 <p>{{x.accIGN}}<span class="text-sm ml-2 opacity-25">[{{x.accServer}}]</span></p>
-                <!-- RANKED INFO -->
+                <!-- ACCOUNT INFO -->
                 <div class="flex flex-row">
                     <!-- SOLO Q INFO -->
                     <div class="flex flex-row text-lg">
@@ -90,6 +94,7 @@
                         </div>
                     </div>
 
+                    <!-- If neither exist -->
                     <div *ngIf="!x.soloqWins && !x.soloqLosses"> 
                         <div class="flex flex-row text-lg ml-10">
                             <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">SOLO Q</div>
@@ -104,29 +109,60 @@
                     </div>
 
                     <!-- DIVIDER -->
-                    <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
-                    
-                    <!-- currencies + champs -->
-                    <div class="flex flex-col text-base ml-10">
-                        <div class="flex flex-row">
-                            <img class="w-5 h-5 my-auto mr-1" src="../../assets/BE_icon.png">
-                            {{x.primaryCurrency}}
-                        </div>
-                        <div class="flex flex-row">
-                            <img class="w-5 h-5 my-auto mr-1" src="../../assets/OE_icon.png">
-                            {{x.secondaryCurrency}}
-                        </div>
-                        <div class="flex flex-row">
-                            <img class="w-5 h-5 my-auto mr-1 invert" src="../../assets/helmet.png">
-                            {{x.champs}}
-                        </div>
+                    <!-- <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div> -->
+                </div>
+            </div>
+
+            <!-- acc credentials section -->
+            <div class="flex flex-col ml-auto justify-center items-center">
+                <p>Copy credentials</p>
+
+                <!-- Copy acc logins -->
+                <button class="my-auto button" (click)="copyToClipboard(x.username + '/' + x.password)"></button>
+            </div>
+        </div>
+
+        <div *ngIf="expandedStates[i]" class="mt-4">
+            <!-- Additional information -->
+            <div class="flex flex-row text-base">
+                <!-- Levelup + verification -->
+                <div class="flex flex-row">
+                    <div class="flex flex-row mr-10">
+                        <p>Level-up Type</p>
+                        <p>: {{x.type}}</p>
                     </div>
 
-                    <!-- DIVIDER -->
-                    <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
-                    
-                    <!-- Copy acc logins -->
-                    <button class="my-auto button ml-10" (click)="copyToClipboard(x.username + ' ' + x.password)"></button>
+                    <div *ngIf="x.verification; else unverified">
+                        <div class="flex flex-row mr-10">
+                            <p>Verification: </p>
+                            <p class="group spoiler" (click)="copyToClipboard(x.mail + '/' + x.mailPass)">{{x.verification}}
+                                <!-- tooltip -->
+                                <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 translate-x-[90%] translate-y-full opacity-0 m-4 mx-auto">
+                                    Click To Copy
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <ng-template class="flex flex-row mr-10" #unverified>
+                        <p>Verification: </p>
+                        <p class="spoiler">{{x.verification}}</p>
+                    </ng-template>
+                </div>
+
+                <!-- currencies + champs -->
+                <div class="flex flex-row ml-5">
+                    <img class="w-5 h-5 my-auto mr-1" src="../../assets/BE_icon.png">
+                    {{x.primaryCurrency}}
+                </div>
+
+                <div class="flex flex-row ml-5">
+                    <img class="w-5 h-5 my-auto mr-1" src="../../assets/OE_icon.png">
+                    {{x.secondaryCurrency}}
+                </div>
+                
+                <div class="flex flex-row ml-5">
+                    <img class="w-5 h-5 my-auto mr-1 invert" src="../../assets/helmet.png">
+                    {{x.champs}}
                 </div>
             </div>
         </div>

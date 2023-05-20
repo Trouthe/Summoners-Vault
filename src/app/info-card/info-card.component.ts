@@ -142,7 +142,6 @@ export class InfoCardComponent {
                       (obj) => {
                         if (obj.key==data[j].championId) {
                           championNames.push(obj.name.replace(/[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()));
-                          console.log(this.accounts[i].accIGN + ': ' + obj.name)
                         }
                       }
                     )

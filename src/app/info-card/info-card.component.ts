@@ -21,16 +21,16 @@ export class InfoCardComponent {
     private http: HttpClient,
     private auth: AuthService,
     private serv: ServicesService,
-  ) {}
+  ) { }
 
-  uid:string | null = this.auth.getUID();
+  uid: string | null = this.auth.getUID();
 
   ngOnInit(): void {
     this.uid = this.auth.getUID();
     this.getDataByUserID(this.uid);
   }
 
-  getDataByUserID (userID: string | null) {
+  getDataByUserID(userID: string | null) {
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     const data = new FormData();
     if (userID) {
@@ -125,28 +125,28 @@ export class InfoCardComponent {
           const championLevels: any[] = [];
           const championNames: any[] = [];
           let champions;
-          this.http.get<any[]>(API_ChampionMastery).pipe (
+          this.http.get<any[]>(API_ChampionMastery).pipe(
             take(3)
-          ).subscribe (
+          ).subscribe(
             data => {
-              for (let j = 0; j<3; j++) {
+              for (let j = 0; j < 3; j++) {
                 championIds.push(data[j].championId);
                 championPoints.push(data[j].championPoints);
                 championLevels.push(data[j].championLevel);
 
                 this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
-                .subscribe(
-                  (response: any) => {
-                    champions = Object.values<any>(response.data);
-                    let filter = champions.filter (
-                      (obj) => {
-                        if (obj.key==data[j].championId) {
-                          championNames.push(obj.name.replace(/[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()));
+                  .subscribe(
+                    (response: any) => {
+                      champions = Object.values<any>(response.data);
+                      let filter = champions.filter(
+                        (obj) => {
+                          if (obj.key == data[j].championId) {
+                            championNames.push(obj.name.replace(/[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()));
+                          }
                         }
-                      }
-                    )
-                  }
-                );
+                      )
+                    }
+                  );
               }
             }
           );
@@ -185,24 +185,24 @@ export class InfoCardComponent {
               this.accounts[i].accLvlType === 'h'
                 ? 'Handlevel'
                 : this.accounts[i].accLvlType === 'b'
-                ? 'Botted'
-                : this.accounts[i].accLvlType,
+                  ? 'Botted'
+                  : this.accounts[i].accLvlType,
 
             verification: (this.accounts[i].accVerification = 1
               ? 'Verified'
               : (this.accounts[i].accVerification = 0
-                  ? 'Unverified'
-                  : this.accounts[i].accVerification)),
+                ? 'Unverified'
+                : this.accounts[i].accVerification)),
 
             // acc server
             accServer:
               this.accounts[i].accServer === 'EUN1'
                 ? 'EUNE'
                 : this.accounts[i].accServer === 'EUW1'
-                ? 'EUW'
-                : this.accounts[i].accServer === 'NA1'
-                ? 'NA'
-                : this.accounts[i].accServer,
+                  ? 'EUW'
+                  : this.accounts[i].accServer === 'NA1'
+                    ? 'NA'
+                    : this.accounts[i].accServer,
 
             // rank information
             rank: rank,
@@ -271,5 +271,5 @@ export class InfoCardComponent {
     return result;
   }
 
-  copyToClipboard(text: string) {navigator.clipboard.writeText(text)}
+  copyToClipboard(text: string) { navigator.clipboard.writeText(text) }
 }

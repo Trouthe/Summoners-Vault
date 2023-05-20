@@ -123,7 +123,7 @@ export class InfoCardComponent {
           const championIds: any[] = [];
           const championPoints: any[] = [];
           const championLevels: any[] = [];
-          let components: any[] = [];
+          const championNames: any[] = [];
           let champions;
           this.http.get<any[]>(API_ChampionMastery).pipe (
             take(3)
@@ -133,12 +133,6 @@ export class InfoCardComponent {
                 championIds.push(data[j].championId);
                 championPoints.push(data[j].championPoints);
                 championLevels.push(data[j].championLevel);
-                
-                // this.http.get<any[]>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
-                //   .subscribe(components => {
-                //     comp = components.filter(component => component.key === championIds[j]);
-                //     console.log(championIds[j])
-                //   });
 
                 this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
                 .subscribe(
@@ -146,10 +140,10 @@ export class InfoCardComponent {
                     champions = Object.values<any>(response.data);
                     let filter = champions.filter (
                       (obj) => {
-                        if (obj.key=='142') {
-                          console.log(obj.name)
+                        if (obj.key==data[j].championId) {
+                          championNames.push(obj.name.replace(/[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()));
+                          console.log(this.accounts[i].accIGN + ': ' + obj.name)
                         }
-                        return obj.key == '142'
                       }
                     )
                   }
@@ -159,23 +153,35 @@ export class InfoCardComponent {
           );
 
           this.combinedAccounts.push({
+            // masteries
             championIds: championIds,
             championPoints: championPoints,
             championLevels: championLevels,
+            championNames: championNames,
+
+            // crucial info
             userID: this.accounts[i].userID,
+            summonerID: summonerID,
             accID: 'AC' + this.accounts[i].acc_id,
-            accIGN: this.accounts[i].accIGN,
             forsale: this.accounts[i].acctosell,
 
+            // basic info
+            summonerLevel: summonerLevel,
+            accIGN: this.accounts[i].accIGN,
+            profileIconId: profileIconID,
+
+            // credentials
             username: this.accounts[i].accUsername,
             password: this.accounts[i].accPassword,
             mail: this.accounts[i].accMail,
             mailPass: this.accounts[i].accPass,
 
+            // currecny + champs
             champs: this.accounts[i].accChamps,
             primaryCurrency: this.accounts[i].accPriCurr,
             secondaryCurrency: this.accounts[i].accSecCurr,
 
+            // acc types
             type:
               this.accounts[i].accLvlType === 'h'
                 ? 'Handlevel'
@@ -189,6 +195,7 @@ export class InfoCardComponent {
                   ? 'Unverified'
                   : this.accounts[i].accVerification)),
 
+            // acc server
             accServer:
               this.accounts[i].accServer === 'EUN1'
                 ? 'EUNE'
@@ -198,9 +205,7 @@ export class InfoCardComponent {
                 ? 'NA'
                 : this.accounts[i].accServer,
 
-            summonerLevel: summonerLevel,
-            summonerID: summonerID,
-            profileIconId: profileIconID,
+            // rank information
             rank: rank,
             rankFlex: rankFlex,
             rankTier: rankTier,

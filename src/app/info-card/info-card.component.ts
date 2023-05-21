@@ -1,4 +1,10 @@
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin, take } from 'rxjs';
@@ -10,7 +16,6 @@ import { ServicesService } from '../services.service';
   templateUrl: './info-card.component.html',
   styleUrls: ['./info-card.component.css'],
 })
-
 export class InfoCardComponent {
   accounts: any[] = [];
   apiAccounts: any[] = [];
@@ -20,28 +25,33 @@ export class InfoCardComponent {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
-    private serv: ServicesService,
+    private serv: ServicesService
   ) {}
 
-  uid:string | null = this.auth.getUID();
+  uid: string | null = this.auth.getUID();
 
   ngOnInit(): void {
     this.uid = this.auth.getUID();
     this.getDataByUserID(this.uid);
   }
 
-  getDataByUserID (userID: string | null) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  getDataByUserID(userID: string | null) {
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    );
     const data = new FormData();
     if (userID) {
       data.set('userID', userID);
       console.log(data.toString());
     }
 
-    this.http.post<any[]>(environment.accounts_information, data).subscribe((Data) => {
-      this.accounts = Data;
-      this.filter();
-    });
+    this.http
+      .post<any[]>(environment.accounts_information, data)
+      .subscribe((Data) => {
+        this.accounts = Data;
+        this.filter();
+      });
   }
 
   filter(): void {
@@ -125,39 +135,31 @@ export class InfoCardComponent {
           const championLevels: any[] = [];
           const championNames: any[] = [];
           let champions;
-          this.http.get<any[]>(API_ChampionMastery).pipe (
-            take(3)
-          ).subscribe (
-            data => {
-              for (let j = 0; j<3; j++) {
+          this.http.get<any[]>(API_ChampionMastery)
+            .pipe(take(3))
+            .subscribe((data) => {
+              for (let j = 0; j < 3; j++) {
                 championIds.push(data[j].championId);
                 championPoints.push(data[j].championPoints);
                 championLevels.push(data[j].championLevel);
 
                 this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
-                .subscribe(
-                  (response: any) => {
+                  .subscribe((response: any) => {
                     champions = Object.values<any>(response.data);
-                    let filter = champions.filter (
-                      (obj) => {
-                        if (obj.key==data[j].championId) {
-                          championNames.push(obj.name.replace(/[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()));
-                        }
+                    let filter = champions.filter((obj) => {
+                      if (obj.key == data[j].championId) {
+                        championNames.push(
+                          obj.name.replace(
+                            /[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()
+                          )
+                        );
                       }
-                    )
-                  }
-                );
+                    });
+                  });
               }
-            }
-          );
+            });
 
           this.combinedAccounts.push({
-            // masteries
-            championIds: championIds,
-            championPoints: championPoints,
-            championLevels: championLevels,
-            championNames: championNames,
-
             // crucial info
             userID: this.accounts[i].userID,
             summonerID: summonerID,
@@ -215,12 +217,20 @@ export class InfoCardComponent {
             flexqWins: flexqWins,
             flexqLosses: flexqLosses,
             flexqLP: flexqLP,
+
+            // masteries
+            championIds: championIds,
+            championPoints: championPoints,
+            championLevels: championLevels,
+            championNames: championNames,
           });
         }
 
         // end
         this.serv.setLoading(false);
-        this.expandedStates = new Array(this.combinedAccounts.length).fill(false);
+        this.expandedStates = new Array(this.combinedAccounts.length).fill(
+          false
+        );
       });
 
       console.log(this.combinedAccounts);
@@ -271,5 +281,7 @@ export class InfoCardComponent {
     return result;
   }
 
-  copyToClipboard(text: string) {navigator.clipboard.writeText(text)}
+  copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text);
+  }
 }

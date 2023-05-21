@@ -1,0 +1,129 @@
+<div style="background: rgb(7, 18, 38);">
+    <div class="m-0 p-0 flex flex-row items-center justify-center">
+        <!-- Left panel -->
+        <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
+
+            <div class="flex p-5 text-white">
+                <h3 class="font-semibold text-xl">Extra Actions</h3>
+            </div>
+
+            <!-- Add accounts -->
+            <div class="flex w-full items-center justify-center text-white">
+                <a routerLink="/add-account" class="py-5 flex flex-row items-center justify-center active w-full">
+                    <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account" style="filter: invert();">
+                    <p class="pl-3">Add Account</p>
+                </a>
+            </div>
+
+            <!-- My Accounts -->
+            <div class="flex w-full items-center justify-center text-white">
+                <a routerLink="/accountinfo" class="py-5 flex flex-row items-center justify-center inactive w-full">
+                    <img width="30px" src="../../assets/icons/list.png" alt="Your Accounts" style="filter: invert();">
+                    <p class="pl-3">Your Accounts</p>
+                </a>
+            </div>
+
+            <!-- Logout -->
+            <div class="flex mt-auto w-full items-center justify-center text-white">
+                <button (click)="logoutFunction()" class="inactive py-5 w-full flex flex-row items-center justify-center">
+                    <img width="32px" src="../../assets/icons/profile.png" alt="Logout" style="filter: invert();">
+                </button>
+                <button (click)="logoutFunction()" class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
+                    <img width="32px" src="../../assets/icons/logout.png" alt="Logout" style="filter: invert();">
+                </button>
+            </div>
+        </div>
+
+        <!-- Add Account -->
+        <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
+            <div class="text-white border-green-500">
+                <!-- parent flex -->
+                <div class="flex flex-wrap mx-20 mt-10 mb-10 gap-10">
+                    <!-- Basic Information -->
+                    <div class="flex flex-col flex-grow">
+                        <div class="flex flex-row items-center justify-center mr-auto">
+                            <img width="32px" src="../../assets/icons/user.png" 
+                                style="filter: invert();"
+                                class="bg-[rgba(0,0,0,0.5)] p-1 mr-2 rounded-tl">
+                            <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Credentials</p>
+                        </div>
+
+                        <div class="flex flex-col pt-2 bg-[rgba(255,255,255,0.2)] rounded-b">
+                            <label for="" class="mx-2 text-sm">Account Name</label>
+                            <input type="text" class="input m-2" placeholder="Name" required="">
+
+                            <label for="" class="mx-2 text-sm">Password</label>
+                            <input type="password" class="input m-2" placeholder="Password" required="">
+
+                            <label for="" class="mx-2 text-sm">Summoner Display Name</label>
+                            <input type="text" class="input m-2" placeholder="Summoner" required="">
+                        </div>
+                    </div>
+
+                    <!-- Account Email Verification -->
+                    <div class="flex flex-col flex-grow">
+                        <div class="flex flex-row items-center justify-center mr-auto">
+                            <img width="32px" src="../../assets/icons/at.png" 
+                                style="filter: invert();"
+                                class="bg-[rgba(0,0,0,0.5)] p-1 mr-2 rounded-tl">
+                            <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Email</p>
+                        </div>
+
+                        <div class="flex flex-col rounded-b pt-2 bg-[rgba(255,255,255,0.2)]">
+                            <label for="" class="mx-2 text-sm">Email Verification</label>
+                            <select id="dropdown" class="input m-2" [(ngModel)]="accVerification">
+                                <option value="no" class="text-sm">No</option>
+                                <option value="yes" class="text-sm">Yes</option>
+                            </select>
+
+                            <div *ngIf="accVerification === 'yes'" class="flex flex-col">
+                                <label for="" class="mx-2 text-sm">Account Email</label>
+                                <input type="email" placeholder="Email" class="input m-2">
+
+                                <label for="" class="mx-2 text-sm">Account Password</label>
+                                <input type="password" placeholder="Password" class="input m-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Properties -->
+                <div class="flex flex-wrap mx-20 mb-10 gap-10">
+                    <div class="flex flex-col w-full">
+                        <div class="flex flex-row items-center justify-center mr-auto">
+                            <img width="31px" src="../../assets/icons/hexagons.png" 
+                                style="filter: invert();"
+                                class="bg-[rgba(0,0,0,0.5)] p-1 mr-2 rounded-tl">
+                            <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Peoperties</p>
+                        </div>
+
+                        <div class="flex rounded-b flex-col flex-wrap h-72 pt-2 bg-[rgba(255,255,255,0.2)]">
+                            <label for="" class="mx-2 text-sm">Server</label>
+                            <select id="dropdown" class="input m-2" [(ngModel)]="serverOptions">
+                                <option *ngFor="let server of serverOptions" class="text-sm">{{ server }}</option>
+                            </select>
+
+                            <label for="" class="mx-2 text-sm">Amount of Blue Essence</label>
+                            <input type="number" placeholder="Blue Essence" class="input m-2">
+
+                            <label for="" class="mx-2 text-sm">Amount of Orange Essence</label>
+                            <input type="number" placeholder="Orange Essence" class="input m-2">
+
+                            <label for="" class="mx-2 text-sm">Amount of Riot Points</label>
+                            <input type="number" placeholder="Riot Points" class="input m-2">
+
+                            <label for="" class="mx-2 text-sm">Skins</label>
+                            <input type="number" placeholder="Skins" class="input m-2">
+
+                            <label for="" class="mx-2 text-sm">Account Level</label>
+                            <input type="number" placeholder="Level" class="input m-2">
+
+                            <label for="" class="mx-2 text-sm">Champions Owned</label>
+                            <input type="number" placeholder="Champions" class="input m-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

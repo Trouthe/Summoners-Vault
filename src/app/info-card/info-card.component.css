@@ -1,5 +1,3 @@
-* {font-family: 'Roboto Mono', monospace}
-
 /* .acc::before {
     content: "";
     position: absolute;
@@ -19,15 +17,15 @@
 }
 
 .acc::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(55deg, rgb(25, 39, 65) 53%, rgba(0,212,255,0) 100%);
-  border-radius: 1.5rem;
-  z-index: -1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(55deg, rgb(25, 39, 65) 53%, rgba(0, 212, 255, 0) 100%);
+    border-radius: 1.5rem;
+    z-index: -1;
 }
 
 .profileIcon {
@@ -55,8 +53,14 @@
 }
 
 
-.button:focus {outline: none}
-.button:active {scale: 0.95}
+.button:focus {
+    outline: none
+}
+
+.button:active {
+    scale: 0.95
+}
+
 .button {
     position: relative;
     background-color: transparent;
@@ -64,7 +68,7 @@
     font-size: 17px;
     font-weight: 600;
     border-radius: 10px;
-    width: 150px;
+    width: 200px;
     height: 45px;
     border: none;
     cursor: pointer;
@@ -90,11 +94,11 @@
 }
 
 .button::after {
-    content: "User/Pass";
+    content: "Copy redentials";
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #333;
+    background-color: rgb(66, 94, 145);
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -116,4 +120,27 @@
 .spoiler:hover {
     color: white;
     cursor: pointer;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 125px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    font-size: smaller;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    /* top: 100%;
+    left: 50%; */
+    margin-top: 30px;
+    margin-left: -100px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }

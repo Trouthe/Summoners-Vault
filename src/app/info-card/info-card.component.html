@@ -1,15 +1,13 @@
 <div *ngFor="let x of combinedAccounts; let i=index">
     <div *ngIf="x.userID==uid">
-        <div class="acc my-3 mx-7 p-3 pl-5 h-auto text-white"
-            style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{x.championNames[0]}}_0.jpg');
+        <div class="acc my-3 mx-7 p-3 pl-5 h-auto text-white" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{x.championNames[0]}}_0.jpg');
             z-index: 2;">
-            <div class="flex flex-row mx-auto cursor-pointer"
-                (click)="expandedStates[i] = !expandedStates[i]"> <!--Switch Expanded States-->
+            <div class="flex flex-row mx-auto cursor-pointer" (click)="expandedStates[i] = !expandedStates[i]">
+                <!--Switch Expanded States-->
                 <!-- Icon Section -->
                 <div class="flex flex-col">
-                    <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png" 
-                        width="80px"
-                        class="profileIcon">
+                    <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png"
+                        width="80px" class="profileIcon">
                     <div class="mx-auto profileLvl">{{x.summonerLevel}}</div>
                 </div>
                 <!-- Account Section -->
@@ -19,60 +17,66 @@
                     <div class="flex flex-row">
                         <!-- SOLO Q INFO -->
                         <div class="flex flex-row text-lg">
-                            <div style="transform: rotate(-90deg); margin-right: -27px; margin-top: 0px; opacity: 0.4; font-weight: lighter;" class="text-sm">SOLO Q</div>
+                            <div style="transform: rotate(-90deg); margin-right: -27px; margin-top: 0px; opacity: 0.4; font-weight: lighter;"
+                                class="text-sm">SOLO Q</div>
                             <div>
-                                <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rank}}.png" alt="Ranked Emblem"
-                                    style="margin-left: -.75rem;">
+                                <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rank}}.png"
+                                    alt="Ranked Emblem" style="margin-left: -.75rem;">
                             </div>
                             <div>
                                 <div class="mt-1">
-                                    <span class="">{{x.rank | titlecase}}<span class="ml-2">{{romanToLatin(x.rankTier)}}</span></span>
+                                    <span class="">{{x.rank | titlecase}}<span
+                                            class="ml-2">{{romanToLatin(x.rankTier)}}</span></span>
                                     {{x.soloqWins}}<span class="text-base text-[var(--grey1)] ml-1">W</span>
                                     {{x.soloqLosses}}<span class="text-base text-[var(--grey1)] ml-1">L</span>
                                 </div>
                                 <div class="mt-1">
                                     {{x.soloqLP}}<span class="text-base text-[var(--grey1)] ml-1">LP</span>
-                
+
                                     <span [ngClass]="{
                                         'text-yellow-400': getFormattedWinRate(x.soloqWins, x.soloqLosses) > 70,
                                         'text-blue-500': getFormattedWinRate(x.soloqWins, x.soloqLosses) > 60 && getFormattedWinRate(x.soloqWins, x.soloqLosses) <= 70,
                                         'text-white': getFormattedWinRate(x.soloqWins, x.soloqLosses) >= 50 && getFormattedWinRate(x.soloqWins, x.soloqLosses) <= 59,
                                         'text-red-500': getFormattedWinRate(x.soloqWins, x.soloqLosses) < 50
                                     }">
-                                    {{ getFormattedWinRate(x.soloqWins, x.soloqLosses) }}%
+                                        {{ getFormattedWinRate(x.soloqWins, x.soloqLosses) }}%
                                     </span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- DIVIDER -->
-                        <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
-                        
+                        <div style="width: 1px;"
+                            class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
+
                         <!-- FLEX Q INFO -->
                         <!-- check if flex wins and losses exist -->
                         <div *ngIf="x.flexqWins && x.flexqLosses">
                             <div class="flex flex-row text-lg ml-10">
-                                <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
+                                <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;"
+                                    class="text-sm">FLEX 5V5</div>
                                 <div>
-                                    <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rankFlex}}.png" alt="Ranked Emblem"
+                                    <img width="85px" height="100px"
+                                        src="../../assets/emblems/Emblem_{{x.rankFlex}}.png" alt="Ranked Emblem"
                                         style="margin-left: -.75rem;">
                                 </div>
                                 <div>
                                     <div class="mt-1">
-                                        <span class="">{{x.rank | titlecase}}<span class="ml-2">{{romanToLatin(x.rankTierFlex)}}</span></span>
+                                        <span class="">{{x.rank | titlecase}}<span
+                                                class="ml-2">{{romanToLatin(x.rankTierFlex)}}</span></span>
                                         {{x.flexqWins}}<span class="text-base text-[var(--grey1)] ml-1">W</span>
                                         {{x.flexqLosses}}<span class="text-base text-[var(--grey1)] ml-1">L</span>
                                     </div>
                                     <div class="mt-1">
                                         {{x.flexqLP}}<span class="text-base text-[var(--grey1)] ml-1">LP</span>
-                    
+
                                         <span [ngClass]="{
                                             'text-yellow-400': getFormattedWinRate(x.flexqWins, x.flexqLosses) > 70,
                                             'text-blue-500': getFormattedWinRate(x.flexqWins, x.flexqLosses) > 60 && getFormattedWinRate(x.flexqWins, x.flexqLosses) <= 70,
                                             'text-white': getFormattedWinRate(x.flexqWins, x.flexqLosses) >= 50 && getFormattedWinRate(x.flexqWins, x.flexqLosses) <= 59,
                                             'text-red-500': getFormattedWinRate(x.flexqWins, x.flexqLosses) < 50
                                         }">
-                                        {{ getFormattedWinRate(x.flexqWins, x.flexqLosses) }}%
+                                            {{ getFormattedWinRate(x.flexqWins, x.flexqLosses) }}%
                                         </span>
                                     </div>
                                 </div>
@@ -80,12 +84,13 @@
                         </div>
 
                         <!-- If they don't exist (unranked) -->
-                        <div *ngIf="!x.flexqWins && !x.flexqLosses"> 
+                        <div *ngIf="!x.flexqWins && !x.flexqLosses">
                             <div class="flex flex-row text-lg ml-10">
-                                <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">FLEX 5V5</div>
+                                <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;"
+                                    class="text-sm">FLEX 5V5</div>
                                 <div>
-                                    <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png" alt="Unranked Emblem"
-                                        style="margin-left: -.75rem;">
+                                    <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png"
+                                        alt="Unranked Emblem" style="margin-left: -.75rem;">
                                 </div>
                                 <div class="my-auto">
                                     Unranked
@@ -94,12 +99,13 @@
                         </div>
 
                         <!-- If neither exist -->
-                        <div *ngIf="!x.soloqWins && !x.soloqLosses"> 
+                        <div *ngIf="!x.soloqWins && !x.soloqLosses">
                             <div class="flex flex-row text-lg ml-10">
-                                <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;" class="text-sm">SOLO Q</div>
+                                <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;"
+                                    class="text-sm">SOLO Q</div>
                                 <div>
-                                    <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png" alt="Unranked Emblem"
-                                        style="margin-left: -.75rem;">
+                                    <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png"
+                                        alt="Unranked Emblem" style="margin-left: -.75rem;">
                                 </div>
                                 <div class="my-auto">
                                     Unranked
@@ -110,14 +116,6 @@
                         <!-- DIVIDER -->
                         <!-- <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div> -->
                     </div>
-                </div>
-
-                <!-- acc credentials section -->
-                <div class="flex flex-col ml-auto justify-center items-center">
-                    <p>Copy credentials</p>
-
-                    <!-- Copy acc logins -->
-                    <button class="my-auto button" (click)="copyToClipboard(x.username + '/' + x.password)"></button>
                 </div>
             </div>
 
@@ -134,9 +132,10 @@
                         <div *ngIf="x.verification; else unverified">
                             <div class="flex flex-row mr-10">
                                 <p>Verification:</p>
-                                <p class="group spoiler ml-2" (click)="copyToClipboard(x.mail + '/' + x.mailPass)">{{x.verification}}
+                                <p class="group tooltip spoiler ml-2" (click)="copyToClipboard(x.mail + '/' + x.mailPass)">
+                                    {{x.verification}}
                                     <!-- tooltip -->
-                                    <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-[105%] translate-y-full opacity-0 m-4 mx-auto">
+                                    <span class="tooltiptext">
                                         Click To Copy
                                     </span>
                                 </p>
@@ -158,41 +157,59 @@
                         <img class="w-5 h-5 my-auto mr-1" src="../../assets/OE_icon.png">
                         {{x.secondaryCurrency}}
                     </div>
-                    
+
                     <div class="flex flex-row ml-5">
                         <img class="w-5 h-5 my-auto mr-1 invert" src="../../assets/helmet.png">
                         {{x.champs}}
                     </div>
                 </div>
 
-                <p class="my-3 text-2xl underline">Your Top Masteries:</p>
+                <p class="my-7 text-2xl"><span class="underline">Your Top Masteries</span>:</p>
                 <div class="flex flex-row">
                     <div class="flex flex-row justify-center items-center mr-10">
                         <div class="flex- flex-col text-center">
-                            <img width="75px" src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/{{x.championNames[0]}}.png" alt="">
+                            <img width="75px"
+                                src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/{{x.championNames[0]}}.png"
+                                alt="">
                             {{x.championNames[0]}}
                         </div>
-                        <img class="mx-2" style="width: 70px; height: 70px" src="../../assets/masteries/Champion_Mastery_Level_{{x.championLevels[0]}}_Flair.png" alt="">
+                        <img class="mx-2" style="width: 70px; height: 70px"
+                            src="../../assets/masteries/Champion_Mastery_Level_{{x.championLevels[0]}}_Flair.png"
+                            alt="">
                         <p>{{x.championPoints[0] | number:'1.0-0'}}</p>
                     </div>
 
                     <div class="flex flex-row justify-center items-center mr-10">
                         <div class="flex- flex-col text-center">
-                            <img width="75px" src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/{{x.championNames[1]}}.png" alt="">
+                            <img width="75px"
+                                src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/{{x.championNames[1]}}.png"
+                                alt="">
                             {{x.championNames[1]}}
                         </div>
-                        <img class="mx-2" style="width: 70px; height: 70px" src="../../assets/masteries/Champion_Mastery_Level_{{x.championLevels[1]}}_Flair.png" alt="">
+                        <img class="mx-2" style="width: 70px; height: 70px"
+                            src="../../assets/masteries/Champion_Mastery_Level_{{x.championLevels[1]}}_Flair.png"
+                            alt="">
                         <p>{{x.championPoints[1] | number:'1.0-0'}}</p>
                     </div>
 
                     <div class="flex flex-row justify-center items-center mr-10">
                         <div class="flex- flex-col text-center">
-                            <img width="75px" src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/{{x.championNames[2]}}.png" alt="">
+                            <img width="75px"
+                                src="https://ddragon.leagueoflegends.com/cdn/13.10.1/img/champion/{{x.championNames[2]}}.png"
+                                alt="">
                             {{x.championNames[2]}}
                         </div>
-                        <img class="mx-2" style="width: 70px; height: 70px" src="../../assets/masteries/Champion_Mastery_Level_{{x.championLevels[2]}}_Flair.png" alt="">
+                        <img class="mx-2" style="width: 70px; height: 70px"
+                            src="../../assets/masteries/Champion_Mastery_Level_{{x.championLevels[2]}}_Flair.png"
+                            alt="">
                         <p>{{x.championPoints[2] | number:'1.0-0'}}</p>
                     </div>
+                </div>
+
+                <!-- acc credentials section -->
+                <div class="flex justify-end items-end ml-auto">
+                    <!-- Copy acc logins -->
+                    <button class="my-auto button" (click)="copyToClipboard(x.username + '/' + x.password)"></button>
                 </div>
             </div>
         </div>

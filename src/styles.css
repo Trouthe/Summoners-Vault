@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    font-family: 'Roboto Mono', monospace
+}
+
 :root {
     --gold1: #F0E6D2;
     --gold2: #C8AA6E;
@@ -29,4 +33,18 @@
     --grey-cool: #1E282D;
     --black-hextech: #010A13;
     --wd:#122a56;
+}
+
+.active {
+    /* background: linear-gradient(-90deg, rgba(18,42,86,0) 17%, rgba(47,80,140,1) 91%) */
+    background-color: rgba(47,80,140,1);
+}
+
+.inactive:hover {
+    /* background: linear-gradient(-90deg, rgba(18,42,86,0) 17%, rgba(47,80,140,1) 91%) */
+    background: rgba(47,80,140,.5);
+}
+
+.logout_inactive:hover {
+    background: #ec262670
 }

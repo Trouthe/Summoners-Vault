@@ -1,17 +1,16 @@
-<div style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bc5eb051-30a6-45b1-805b-0bc97c56f2af/d834cif-ed97b7e4-860e-4fb0-9693-7595e03dd17c.jpg/v1/fill/w_1600,h_944,q_75,strp/championship_shyvana_splash_by_madspartan013_d834cif-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTQ0IiwicGF0aCI6IlwvZlwvYmM1ZWIwNTEtMzBhNi00NWIxLTgwNWItMGJjOTdjNTZmMmFmXC9kODM0Y2lmLWVkOTdiN2U0LTg2MGUtNGZiMC05NjkzLTc1OTVlMDNkZDE3Yy5qcGciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.JHE5D6dzCGjtwzBDgKRBa4qaEQBjnp81OzmFraPDLeU');
-            background-repeat: no-repeat;background-size: cover;">
-    <div class="m-0 p-0 flex flex-row items-center justify-center bg-gradient-to-bl from-transparent from-5% via-[var(--blue7)] via-10% to-[var(--blue7)]">
+<div style="background: rgb(7, 18, 38);">
+    <div class="m-0 p-0 flex flex-row items-center justify-center">
 
         <!-- Left panel -->
         <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
 
             <div class="flex p-5 text-white">
-                <h3 class="font-bold text-2xl">Extra Actions</h3>
+                <h3 class="font-semibold text-xl">Extra Actions</h3>
             </div>
 
             <!-- Add accounts -->
             <div class="flex w-full items-center justify-center text-white">
-                <a href="" class="py-5 flex flex-row items-center justify-center inactive w-full">
+                <a routerLink="/add-account" class="py-5 flex flex-row items-center justify-center inactive w-full">
                     <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account" style="filter: invert();">
                     <p class="pl-3">Add Account</p>
                 </a>
@@ -41,7 +40,10 @@
             <div *ngIf="loading" class="flex justify-center items-center h-screen overflow-hidden">
                 <app-spinner></app-spinner>
             </div>
-            <app-info-card class="mt-28"></app-info-card>
+            <div *ngIf="!loading" class="text-white text-4xl p-10 font-extralight">
+                Your Accounts
+            </div>
+            <app-info-card></app-info-card>
         </div>
     </div>
 </div>

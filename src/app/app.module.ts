@@ -13,6 +13,7 @@ import { AccInfoComponent } from './acc-info/acc-info.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AddAccountComponent } from './add-account/add-account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     InfoCardComponent,
     LoginpageComponent,
     SpinnerComponent,
+    AddAccountComponent,
   ],
   imports: [
     BrowserModule,

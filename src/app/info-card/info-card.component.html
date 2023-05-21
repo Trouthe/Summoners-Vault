@@ -117,6 +117,14 @@
                         <!-- <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div> -->
                     </div>
                 </div>
+
+                <!-- acc credentials section -->
+                <div class="flex flex-col ml-auto justify-center items-center">
+                    <p>Copy credentials</p>
+
+                    <!-- Copy acc logins -->
+                    <button class="my-auto button" (click)="copyToClipboard(x.username + '/' + x.password)"></button>
+                </div>
             </div>
 
             <div *ngIf="expandedStates[i]" class="mt-4">
@@ -132,10 +140,9 @@
                         <div *ngIf="x.verification; else unverified">
                             <div class="flex flex-row mr-10">
                                 <p>Verification:</p>
-                                <p class="group tooltip spoiler ml-2" (click)="copyToClipboard(x.mail + '/' + x.mailPass)">
-                                    {{x.verification}}
+                                <p class="group spoiler ml-2" (click)="copyToClipboard(x.mail + '/' + x.mailPass)">{{x.verification}}
                                     <!-- tooltip -->
-                                    <span class="tooltiptext">
+                                    <span class="group-hover:opacity-100 transition-opacity bg-gray-800 px-1 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-[105%] translate-y-full opacity-0 m-4 mx-auto">
                                         Click To Copy
                                     </span>
                                 </p>

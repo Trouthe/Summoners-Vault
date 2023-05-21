@@ -187,24 +187,24 @@ export class InfoCardComponent {
               this.accounts[i].accLvlType === 'h'
                 ? 'Handlevel'
                 : this.accounts[i].accLvlType === 'b'
-                ? 'Botted'
-                : this.accounts[i].accLvlType,
+                  ? 'Botted'
+                  : this.accounts[i].accLvlType,
 
             verification: (this.accounts[i].accVerification = 1
               ? 'Verified'
               : (this.accounts[i].accVerification = 0
-                  ? 'Unverified'
-                  : this.accounts[i].accVerification)),
+                ? 'Unverified'
+                : this.accounts[i].accVerification)),
 
             // acc server
             accServer:
               this.accounts[i].accServer === 'EUN1'
                 ? 'EUNE'
                 : this.accounts[i].accServer === 'EUW1'
-                ? 'EUW'
-                : this.accounts[i].accServer === 'NA1'
-                ? 'NA'
-                : this.accounts[i].accServer,
+                  ? 'EUW'
+                  : this.accounts[i].accServer === 'NA1'
+                    ? 'NA'
+                    : this.accounts[i].accServer,
 
             // rank information
             rank: rank,

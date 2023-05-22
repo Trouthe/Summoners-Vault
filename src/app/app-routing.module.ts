@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { AccInfoComponent } from './acc-info/acc-info.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { AddAccountComponent } from './add-account/add-account.component';
+import { MarketplaceComponent } from './marketplace/marketplace.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -12,10 +13,11 @@ const routes: Routes = [
   { path: 'accountinfo', component: AccInfoComponent },
   { path: 'login', component: LoginpageComponent },
   { path: 'add-account', component: AddAccountComponent },
+  { path: 'marketplace', component: MarketplaceComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

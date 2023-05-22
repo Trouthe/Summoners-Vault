@@ -60,6 +60,7 @@ export class AddAccountComponent {
       accLvlType: '',
       acctosell: false,
       accPrice: null,
+      rank: 'Unranked',
     });
   }
 
@@ -69,7 +70,6 @@ export class AddAccountComponent {
     const acctosellValue = formValues.acctosell ? 1 : 0;
     // Update the form value with the converted value
     this.accountForm.patchValue({ acctosell: acctosellValue });
-
 
     console.log(acctosellValue)
   }
@@ -115,6 +115,7 @@ export class AddAccountComponent {
         accLvlType: '',
         acctosell: false,
         accPrice: null,
+        rank: 'Unranked'
       });
     } else {
       // Mark all form controls as touched to display validation errors

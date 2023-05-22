@@ -25,6 +25,14 @@
                 </a>
             </div>
 
+            <!-- Marketplace -->
+            <div class="flex w-full items-center justify-center text-white">
+                <a routerLink="/marketplace" class="py-5 flex flex-row items-center justify-center inactive w-full">
+                    <img width="30px" src="../../assets/icons/shopping-cart.png" alt="Your Accounts" style="filter: invert();">
+                    <p class="pl-3">Marketplace</p>
+                </a>
+            </div>
+
             <!-- Logout -->
             <div class="flex mt-auto w-full items-center justify-center text-white">
                 <button (click)="logoutFunction()"
@@ -115,13 +123,58 @@
                                 <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Properties</p>
                             </div>
 
-                            <div class="flex rounded-b flex-col flex-wrap h-[40vh] pt-2 bg-[rgba(255,255,255,0.2)]">
-                                <label for="" class="mx-2 text-sm">Server</label>
-                                <select id="server" formControlName="server" class="input m-2">
-                                    <option class="text-sm" value="EUW1" [selected]="true">Europe West</option>
-                                    <option class="text-sm" value="EUN1">Europe Nordic East</option>
-                                    <option class="text-sm" value="NA1">North America</option>
-                                </select>
+                            <div class="flex rounded-b flex-col flex-wrap h-[35vh] pt-2 bg-[rgba(255,255,255,0.2)]">
+                                <div>
+                                    <label for="" class="mx-2 text-sm">Server</label>
+                                    <select id="server" formControlName="server" class="input m-2">
+                                        <option class="text-sm" value="EUW1" [selected]="true">Europe West</option>
+                                        <option class="text-sm" value="EUN1">Europe Nordic East</option>
+                                        <option class="text-sm" value="NA1">North America</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="" class="mx-2 text-sm">Rank (Solo / Duo)</label>
+                                    <select id="rank" formControlName="rank" class="input m-2">
+                                        <option class="text-sm" value="unranked" [selected]="true">Unranked</option>
+
+                                        <option class="text-sm" value="Iron 4">Iron 4</option>
+                                        <option class="text-sm" value="Iron 3">Iron 3</option>
+                                        <option class="text-sm" value="Iron 2">Iron 2</option>
+                                        <option class="text-sm" value="Iron 1">Iron 1</option>
+                                        
+                                        <option class="text-sm" value="Bronze 4">Bronze 4</option>
+                                        <option class="text-sm" value="Bronze 3">Bronze 3</option>
+                                        <option class="text-sm" value="Bronze 2">Bronze 2</option>
+                                        <option class="text-sm" value="Bronze 1">Bronze 1</option>
+
+                                        <option class="text-sm" value="Silver 4">Silver 4</option>
+                                        <option class="text-sm" value="Silver 3">Silver 3</option>
+                                        <option class="text-sm" value="Silver 2">Silver 2</option>
+                                        <option class="text-sm" value="Silver 1">Silver 1</option>
+
+                                        <option class="text-sm" value="Gold 4">Gold 4</option>
+                                        <option class="text-sm" value="Gold 3">Gold 3</option>
+                                        <option class="text-sm" value="Gold 2">Gold 2</option>
+                                        <option class="text-sm" value="Gold 1">Gold 1</option>
+
+                                        <option class="text-sm" value="Platinum 4">Platinum 4</option>
+                                        <option class="text-sm" value="Platinum 3">Platinum 3</option>
+                                        <option class="text-sm" value="Platinum 2">Platinum 2</option>
+                                        <option class="text-sm" value="Platinum 1">Platinum 1</option>
+
+                                        <option class="text-sm" value="Diamond 4">Diamond 4</option>
+                                        <option class="text-sm" value="Diamond 3">Diamond 3</option>
+                                        <option class="text-sm" value="Diamond 2">Diamond 2</option>
+                                        <option class="text-sm" value="Diamond 1">Diamond 1</option>
+
+                                        <option class="text-sm" value="Master">Master</option>
+
+                                        <option class="text-sm" value="Grandmaster">Grandmaster</option>
+
+                                        <option class="text-sm" value="Challenger">Challenger</option>
+                                    </select>
+                                </div>
 
                                 <div class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Amount of Blue Essence</label>

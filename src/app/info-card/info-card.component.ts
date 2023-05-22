@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { forkJoin, take } from 'rxjs';
@@ -17,8 +11,9 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./info-card.component.css'],
 })
 export class InfoCardComponent {
-  accounts: any[] = [];
-  apiAccounts: any[] = [];
+  private accounts: any[] = [];
+  private apiAccounts: any[] = [];
+  
   combinedAccounts: any[] = [];
   expandedStates: boolean[] = [];
 

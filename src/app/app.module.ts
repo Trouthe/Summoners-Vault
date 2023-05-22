@@ -14,6 +14,7 @@ import { InfoCardComponent } from './info-card/info-card.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AddAccountComponent } from './add-account/add-account.component';
+import { MarketplaceComponent } from './marketplace/marketplace.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AddAccountComponent } from './add-account/add-account.component';
     LoginpageComponent,
     SpinnerComponent,
     AddAccountComponent,
+    MarketplaceComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 <div style="background: rgb(7, 18, 38);">
     <div class="m-0 p-0 flex flex-row items-center justify-center">
-
         <!-- Left panel -->
-        <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
+        <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]"
+            style="box-shadow: inset -4px 0px 5px #00000035">
 
             <div class="flex p-5 text-white">
                 <h3 class="font-semibold text-xl">Extra Actions</h3>
@@ -11,14 +11,15 @@
             <!-- Add accounts -->
             <div class="flex w-full items-center justify-center text-white">
                 <a routerLink="/add-account" class="py-5 flex flex-row items-center justify-center inactive w-full">
-                    <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account" style="filter: invert();">
+                    <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account"
+                        style="filter: invert();">
                     <p class="pl-3">Add Account</p>
                 </a>
             </div>
 
             <!-- My Accounts -->
             <div class="flex w-full items-center justify-center text-white">
-                <a routerLink="/accountinfo" class="py-5 flex flex-row items-center justify-center active w-full">
+                <a routerLink="/accountinfo" class="py-5 flex flex-row items-center justify-center inactive w-full">
                     <img width="30px" src="../../assets/icons/list.png" alt="Your Accounts" style="filter: invert();">
                     <p class="pl-3">Your Accounts</p>
                 </a>
@@ -26,7 +27,7 @@
 
             <!-- Marketplace -->
             <div class="flex w-full items-center justify-center text-white">
-                <a routerLink="/marketplace" class="py-5 flex flex-row items-center justify-center inactive w-full">
+                <a routerLink="/marketplace" class="py-5 flex flex-row items-center justify-center active w-full">
                     <img width="30px" src="../../assets/icons/shopping-cart.png" alt="Your Accounts" style="filter: invert();">
                     <p class="pl-3">Marketplace</p>
                 </a>
@@ -34,24 +35,24 @@
 
             <!-- Logout -->
             <div class="flex mt-auto w-full items-center justify-center text-white">
-                <button (click)="logoutFunction()" class="inactive py-5 w-full flex flex-row items-center justify-center">
+                <button (click)="logoutFunction()"
+                    class="inactive py-5 w-full flex flex-row items-center justify-center">
                     <img width="32px" src="../../assets/icons/profile.png" alt="Logout" style="filter: invert();">
                 </button>
-                <button (click)="logoutFunction()" class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
+                <button (click)="logoutFunction()"
+                    class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
                     <img width="32px" src="../../assets/icons/logout.png" alt="Logout" style="filter: invert();">
                 </button>
             </div>
         </div>
-        
-        <!-- Cards -->
+
+        <!-- Marketplace -->
         <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
-            <div *ngIf="loading" class="flex justify-center items-center h-screen overflow-hidden">
-                <app-spinner></app-spinner>
+            <!-- MARKETPLACE CODE HERE -->
+            <div *ngFor="let x of m_Accounts; let i=index" class="text-white">
+                {{x.accRank}}
+                {{'$' + x.accPrice}}
             </div>
-            <div *ngIf="!loading" class="text-white text-4xl p-10 font-extralight">
-                Your Accounts
-            </div>
-            <app-info-card></app-info-card>
         </div>
     </div>
 </div>

@@ -40,7 +40,7 @@
 
         <!-- Add Account -->
         <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
-            <div class="text-white border-green-500">
+            <div class="text-white">
                 <form class="mt-8 space-y-6" action="#" [formGroup]="accountForm" (ngSubmit)="onSubmit()" method="POST">
                     <!-- parent flex -->
                     <div class="flex flex-wrap mx-20 mt-10 mb-10 gap-10">
@@ -107,15 +107,15 @@
                     </div>
 
                     <!-- Account Properties -->
-                    <div class="flex flex-wrap mx-20 mb-10 gap-10">
+                    <div class="flex flex-wrap mx-20 mb-10">
                         <div class="flex flex-col w-full">
                             <div class="flex flex-row items-center justify-center mr-auto">
                                 <img width="31px" src="../../assets/icons/hexagons.png" style="filter: invert();"
                                     class="bg-[rgba(0,0,0,0.5)] p-1 mr-2 rounded-tl">
-                                <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Peoperties</p>
+                                <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Properties</p>
                             </div>
 
-                            <div class="flex rounded-b flex-col flex-wrap h-72 pt-2 bg-[rgba(255,255,255,0.2)]">
+                            <div class="flex rounded-b flex-col flex-wrap h-[40vh] pt-2 bg-[rgba(255,255,255,0.2)]">
                                 <label for="" class="mx-2 text-sm">Server</label>
                                 <select id="server" formControlName="server" class="input m-2">
                                     <option class="text-sm" value="EUW1" [selected]="true">Europe West</option>
@@ -123,24 +123,36 @@
                                     <option class="text-sm" value="NA1">North America</option>
                                 </select>
 
-                                <label for="" class="mx-2 text-sm">Amount of Blue Essence</label>
-                                <input type="number" id="blueEssence" placeholder="Blue Essence" class="input m-2"
-                                    required>
+                                <div class="flex flex-col">
+                                    <label for="" class="mx-2 text-sm">Amount of Blue Essence</label>
+                                    <input type="number" id="blueEssence" placeholder="Blue Essence" class="input m-2">
+                                </div>
 
-                                <label for="" class="mx-2 text-sm">Amount of Orange Essence</label>
-                                <input type="number" id="orangeEssence" placeholder="Orange Essence" class="input m-2">
+                                <div class="flex flex-col">
+                                    <label for="" class="mx-2 text-sm">Amount of Orange Essence</label>
+                                    <input type="number" id="orangeEssence" placeholder="Orange Essence"
+                                        class="input m-2">
+                                </div>
 
-                                <label for="" class="mx-2 text-sm">Amount of Riot Points</label>
-                                <input type="number" id="riotPoints" placeholder="Riot Points" class="input m-2">
+                                <div class="flex flex-col">
+                                    <label for="" class="mx-2 text-sm">Amount of Riot Points</label>
+                                    <input type="number" id="riotPoints" placeholder="Riot Points" class="input m-2">
+                                </div>
 
-                                <label for="" class="mx-2 text-sm">Skins</label>
-                                <input type="number" id="skins" placeholder="Skins" class="input m-2">
+                                <div class="flex flex-col">
+                                    <label for="" class="mx-2 text-sm">Skins</label>
+                                    <input type="number" id="skins" placeholder="Skins" class="input m-2">
+                                </div>
 
-                                <label for="" class="mx-2 text-sm">Account Level</label>
-                                <input type="number" id="accountLevel" placeholder="Level" class="input m-2">
+                                <div class="flex flex-col">
+                                    <label for="" class="mx-2 text-sm">Account Level</label>
+                                    <input type="number" id="accountLevel" placeholder="Level" class="input m-2">
+                                </div>
 
-                                <label for="" class="mx-2 text-sm">Champions Owned</label>
-                                <input type="number" id="championsOwned" placeholder="Champions" class="input m-2">
+                                <div class="flex flex-col">
+                                    <label for="" class="mx-2 text-sm">Champions Owned</label>
+                                    <input type="number" id="championsOwned" placeholder="Champions" class="input m-2">
+                                </div>
 
                                 <div class="flex flex-row items-center justify-center my-auto mr-auto">
                                     <label for="" class="mx-2 text-sm">Leveling Type:</label>
@@ -153,13 +165,26 @@
 
                                 <div class="flex flex-row items-center justify-center my-auto mr-auto">
                                     <label for="" class="mx-2 text-sm">Advertise Account: </label>
-                                    <input type="checkbox" formControlName="acctosell" (change)="toggleAcctosell()" class=" m-2">
+                                    <input type="checkbox" formControlName="acctosell" (change)="toggleAcctosell()" class="m-2">
+
+                                    <div *ngIf="accountForm.get('acctosell')?.value">
+                                        <label for="" class="mx-2 text-sm">Price: </label>
+                                        <input type="number" formControlName="accPrice" placeholder="$" class="input m-2">
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                    <button class="cssbuttons-io-button my-10" type="submit"> Submit
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="currentColor"
+                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
+                            </svg>
+                        </div>
+                    </button>
                     </div>
-                    <button type="submit" class="bg-red-700 p-5 rounded-full"
-                        [disabled]="accountForm.invalid">Submit</button>
                 </form>
             </div>
         </div>

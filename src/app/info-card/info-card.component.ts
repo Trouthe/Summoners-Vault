@@ -134,25 +134,27 @@ export class InfoCardComponent {
           const championPoints: any[] = [];
           const championLevels: any[] = [];
           const championNames: any[] = [];
-          let champions;
+          let champions: any[];
           this.http.get<any[]>(API_ChampionMastery)
             .pipe(take(3))
             .subscribe((data) => {
-              for (let j = 0; j < 3; j++) {
-                championIds.push(data[j].championId);
-                championPoints.push(data[j].championPoints);
-                championLevels.push(data[j].championLevel);
+              for (let k = 0; k < 3; k++) {
+                championIds.push(data[k].championId);
+                championPoints.push(data[k].championPoints);
+                championLevels.push(data[k].championLevel);
 
                 this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
                   .subscribe((response: any) => {
                     champions = Object.values<any>(response.data);
                     let filter = champions.filter((obj) => {
-                      if (obj.key == data[j].championId) {
-                        championNames.push(
-                          obj.name.replace(
-                            /[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()
-                          )
+                      if (obj.key == data[k].championId) {
+                        let temp = obj.name.replace(
+                          /[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()
                         );
+
+                        // debug
+                        // console.log(this.accounts[i].accIGN + ' ' + temp)
+                        championNames.push(temp);
                       }
                     });
                   });
@@ -190,9 +192,9 @@ export class InfoCardComponent {
                   ? 'Botted'
                   : this.accounts[i].accLvlType,
 
-            verification: (this.accounts[i].accVerification = 1
+            verification: (this.accounts[i].accVerification === '1'
               ? 'Verified'
-              : (this.accounts[i].accVerification = 0
+              : (this.accounts[i].accVerification === '0'
                 ? 'Unverified'
                 : this.accounts[i].accVerification)),
 

@@ -129,7 +129,7 @@
                             <p>: {{x.type}}</p>
                         </div>
 
-                        <div *ngIf="x.verification; else unverified">
+                        <div *ngIf="x.verification === 'Verified'; else unverified">
                             <div class="flex flex-row mr-10">
                                 <p>Verification:</p>
                                 <p class="group tooltip spoiler ml-2" (click)="copyToClipboard(x.mail + '/' + x.mailPass)">
@@ -143,7 +143,7 @@
                         </div>
                         <ng-template class="flex flex-row mr-10" #unverified>
                             <p>Verification: </p>
-                            <p class="spoiler">{{x.verification}}</p>
+                            <p class="ml-2 mr-10">Unverified</p>
                         </ng-template>
                     </div>
 

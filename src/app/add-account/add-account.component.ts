@@ -59,6 +59,7 @@ export class AddAccountComponent {
       championsOwned: 0,
       accLvlType: '',
       acctosell: false,
+      accPrice: null,
     });
   }
 
@@ -113,6 +114,7 @@ export class AddAccountComponent {
         championsOwned: 0,
         accLvlType: '',
         acctosell: false,
+        accPrice: null,
       });
     } else {
       // Mark all form controls as touched to display validation errors

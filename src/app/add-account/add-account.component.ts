@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
-
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-add-account',
   templateUrl: './add-account.component.html',
@@ -59,23 +62,29 @@ export class AddAccountComponent {
 
   onSubmit() {
     if (this.accountForm.valid) {
-      // Access the form values
       const formValues = this.accountForm.value;
       console.log(formValues);
 
+      // turn it readable for the php database
       const formData = new FormData();
       for (const key in formValues) {
         formData.append(key, formValues[key]);
       }
 
-      this.http.post('https://spicysalmon.000webhostapp.com/insertAccount.php', formData, {responseType: 'text'}).subscribe(
-        () => {
-          console.log('Data inserted successfully!');
-        },
-        (error) => {
-          console.error('Failed to insert data:', error);
-        }
-      );
+      this.http
+        .post(
+          'https://spicysalmon.000webhostapp.com/insertAccount.php',
+          formData,
+          { responseType: 'text' }
+        )
+        .subscribe(
+          () => {
+            console.log('Data inserted successfully!');
+          },
+          (error) => {
+            console.error('Failed to insert data:', error);
+          }
+        );
       // Reset the form and keep the default selected values
       this.accountForm.reset({
         userID: this.uid,

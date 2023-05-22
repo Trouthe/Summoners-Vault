@@ -13,6 +13,7 @@ export const environment = {
   rankedInfo: 'https://spicysalmon.000webhostapp.com/rankedInfo.php',
   masteryInfo: 'https://spicysalmon.000webhostapp.com/masteryInfo.php',
   marketplaceAccounts: 'https://spicysalmon.000webhostapp.com/getMarketplaceAccounts.php',
+  deleteAccount: 'https://spicysalmon.000webhostapp.com/deleteAccount.php',
 };
 
 /*

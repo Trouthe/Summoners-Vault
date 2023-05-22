@@ -1,19 +1,28 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { forkJoin, take } from 'rxjs';
+import { 
+  forkJoin,
+  take 
+} from 'rxjs';
+
 import { AuthService } from '../auth.service';
 import { ServicesService } from '../services.service';
+import { 
+  catchError,
+  throwError 
+} from 'rxjs';
 
 @Component({
   selector: 'app-info-card',
   templateUrl: './info-card.component.html',
   styleUrls: ['./info-card.component.css'],
 })
+
 export class InfoCardComponent {
   private accounts: any[] = [];
   private apiAccounts: any[] = [];
-  
+
   combinedAccounts: any[] = [];
   expandedStates: boolean[] = [];
 
@@ -21,32 +30,33 @@ export class InfoCardComponent {
     private http: HttpClient,
     private auth: AuthService,
     private serv: ServicesService
-  ) {}
+  ) { }
 
-  uid: string | null = '';
+  uid: string = '';
 
   ngOnInit(): void {
     this.uid = this.auth.getUID()!.toString();
     this.getDataByUserID(this.uid);
 
+    // Debug
     // console.log('uid: ' + this.uid);
   }
 
   getDataByUserID(userID: string | null) {
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
     const data = new FormData();
+
     if (userID) {
       data.set('userID', userID);
+      
       console.log(data.toString());
     }
 
     this.http
       .post<any[]>(environment.accounts_information, data)
-      .subscribe((Data) => {
+      .subscribe(
+        (Data) => {
         this.accounts = Data;
+
         this.filter();
       });
   }
@@ -99,6 +109,7 @@ export class InfoCardComponent {
             flexqLP;
 
           // console.log(rankResults);
+
           // Filter ranks
           if (rankResults[i].length > 0) {
             for (let j = 0; j < rankResults[i].length; j++) {
@@ -132,37 +143,40 @@ export class InfoCardComponent {
           const championLevels: any[] = [];
           const championNames: any[] = [];
           let champions: any[];
+
           this.http.get<any[]>(API_ChampionMastery)
             .pipe(take(3))
-            .subscribe((data) => {
-              for (let k = 0; k < 3; k++) {
-                championIds.push(data[k].championId);
-                championPoints.push(data[k].championPoints);
-                championLevels.push(data[k].championLevel);
+            .subscribe(
+              (data) => {
+                for (let k = 0; k < 3; k++) {
+                  championIds.push(data[k].championId);
+                  championPoints.push(data[k].championPoints);
+                  championLevels.push(data[k].championLevel);
 
-                this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
-                  .subscribe((response: any) => {
-                    champions = Object.values<any>(response.data);
-                    let filter = champions.filter((obj) => {
-                      if (obj.key == data[k].championId) {
-                        let temp = obj.name.replace(
-                          /[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()
-                        );
+                  this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
+                    .subscribe(
+                      (response: any) => {
+                        champions = Object.values<any>(response.data);
+                        let filter = champions.filter((obj) => {
+                          if (obj.key == data[k].championId) {
+                            let temp = obj.name.replace(
+                              /[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()
+                              );
 
-                        // debug
-                        // console.log(this.accounts[i].accIGN + ' ' + temp)
-                        championNames.push(temp);
-                      }
-                    });
-                  });
-              }
-            });
+                            // debug
+                            // console.log(this.accounts[i].accIGN + ' ' + temp)
+                            championNames.push(temp);
+                          }
+                        });
+                      });
+                }
+              });
 
           this.combinedAccounts.push({
             // crucial info
             userID: this.accounts[i].userID,
             summonerID: summonerID,
-            accID: 'AC' + this.accounts[i].acc_id,
+            accID: this.accounts[i].acc_id,
             forsale: this.accounts[i].acctosell,
 
             // basic info
@@ -239,6 +253,7 @@ export class InfoCardComponent {
   // Filter decimal places in winrate
   getFormattedWinRate(wins: number, losses: number): any {
     const winRate = (wins / (wins + losses)) * 100;
+
     if (Number.isInteger(winRate)) {
       return winRate.toFixed(0);
     } else if (winRate == 0) {
@@ -269,18 +284,49 @@ export class InfoCardComponent {
     for (let i = 0; i < romanNumeral.length; i++) {
       const currentChar = romanNumeral[i];
       const currentValue = romanNumerals[currentChar];
+
       const nextChar = romanNumeral[i + 1];
       const nextValue = romanNumerals[nextChar];
+
       if (nextValue && currentValue < nextValue) {
         result -= currentValue;
       } else {
         result += currentValue;
       }
     }
+
     return result;
   }
 
   copyToClipboard(text: string) {
     navigator.clipboard.writeText(text);
+  }
+
+  removeCardItem(index: number) {
+    this.combinedAccounts.splice(index, 1);
+  }
+
+  deleteAccount(accID: number, index: number) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    // Create the request body
+    const body = new URLSearchParams();
+    body.set('accID', accID.toString());
+
+    this.http.post('https://spicysalmon.000webhostapp.com/deleteAccount.php', body.toString(), { headers })
+      .pipe(
+        catchError(error => {
+          console.error('API Error:', error);
+
+          return throwError('Something went wrong.');
+        })
+      )
+      .subscribe(response => {
+        console.log('API Response:', response);
+      });
+
+    this.removeCardItem(index);
   }
 }

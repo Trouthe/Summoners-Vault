@@ -19,7 +19,7 @@ export class AccInfoComponent {
   //   });
   // }
 
-  uid: string | null = this.authService.getUID();
+  uid: number | null = this.authService.getUID();
   loading: boolean = false;
   loadInterval: any;
 

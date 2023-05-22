@@ -23,11 +23,13 @@ export class InfoCardComponent {
     private serv: ServicesService
   ) {}
 
-  uid: string | null = this.auth.getUID();
+  uid: string | null = '';
 
   ngOnInit(): void {
-    this.uid = this.auth.getUID();
+    this.uid = this.auth.getUID()!.toString();
     this.getDataByUserID(this.uid);
+
+    // console.log('uid: ' + this.uid);
   }
 
   getDataByUserID(userID: string | null) {

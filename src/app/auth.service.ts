@@ -11,7 +11,7 @@ export class AuthService {
   // private uid!:string | null;
 
   // TESTING PUPOSES
-  private uid:string | null = '1';
+  private uid:number | null = 1;
 
   constructor(private http: HttpClient) { }
 
@@ -32,8 +32,8 @@ export class AuthService {
   }
 
   // set/get
-  setUID (uid:string): void {this.uid = uid}
-  getUID (): string | null {return this.uid}
+  setUID (uid:number): void {this.uid = uid}
+  getUID (): number | null {return this.uid}
 
   // reset uid
   logout(): void {this.uid = null}

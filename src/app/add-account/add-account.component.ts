@@ -7,14 +7,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 @Component({
   selector: 'app-add-account',
   templateUrl: './add-account.component.html',
   styleUrls: ['./add-account.component.css'],
 })
 export class AddAccountComponent {
-  uid: string | null = this.authService.getUID();
+  uid: number | null = this.authService.getUID();
 
   accountForm!: FormGroup;
   showEmailFields: boolean = false;
@@ -28,7 +29,7 @@ export class AddAccountComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // is logged in?
@@ -47,20 +48,19 @@ export class AddAccountComponent {
       accountName: this.accountName,
       accountPassword: this.accountPassword,
       summonerDisplayName: this.summonerDisplayName,
-      emailVerification: 0,
-      accountEmail: '',
-      accountEmailPassword: '',
-      server: 'EUW1',
-      blueEssence: 0,
-      orangeEssence: 0,
-      riotPoints: 0,
-      skins: 0,
-      accountLevel: 0,
-      championsOwned: 0,
-      accLvlType: '',
-      acctosell: false,
-      accPrice: null,
-      rank: 'Unranked',
+      emailVerification: [0],
+      accountEmail: [''],
+      accountEmailPassword: [''],
+      server: ['EUW1'],
+      blueEssence: [0],
+      orangeEssence: [0],
+      riotPoints: [0],
+      skins: [0],
+      championsOwned: [0],
+      accLvlType: [''],
+      acctosell: [0],
+      accPrice: 0,
+      rank: ['Unranked'],
     });
   }
 
@@ -80,42 +80,45 @@ export class AddAccountComponent {
       console.log(formValues);
 
       // turn it readable for the php database
-      const formData = new FormData();
+      const formData = new URLSearchParams();
       for (const key in formValues) {
         formData.append(key, formValues[key]);
       }
 
-      this.http
-        .post(
-          'https://spicysalmon.000webhostapp.com/insertAccount.php',
-          formData,
-          { responseType: 'text' }
+      console.log(formData.toString());
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      });
+
+      // Make the HTTP POST request
+      this.http.post('https://spicysalmon.000webhostapp.com/insertAccount.php', formData.toString(), { headers })
+        .pipe(
+          catchError(error => {
+            // Handle any errors from the API
+            console.error('API Error:', error);
+            return throwError('Something went wrong.');
+          })
         )
-        .subscribe(
-          () => {
-            console.log('Data inserted successfully!');
-          },
-          (error) => {
-            console.error('Failed to insert data:', error);
-          }
-        );
+        .subscribe(response => {
+          // Handle the response from the API
+          console.log('API Response:', response);
+          // You can perform any additional actions after a successful response
+        });
+
       // Reset the form and keep the default selected values
       this.accountForm.reset({
         userID: this.uid,
         emailVerification: formValues.emailVerification,
-        accountEmail: '',
-        accountEmailPassword: '',
         server: 'EUW1',
         blueEssence: 0,
         orangeEssence: 0,
         riotPoints: 0,
         skins: 0,
-        accountLevel: 0,
         championsOwned: 0,
         accLvlType: '',
-        acctosell: false,
-        accPrice: null,
-        rank: 'Unranked'
+        acctosell: 0,
+        accPrice: 0,
+        rank: 'Unranked',
       });
     } else {
       // Mark all form controls as touched to display validation errors

@@ -16,3 +16,11 @@
 .input:focus {box-shadow: 0 0 0 .15vw skyblue}
 
 .input::placeholder {font-size: .7vw}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {appearance: none}

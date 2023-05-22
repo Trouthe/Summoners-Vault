@@ -57,7 +57,20 @@ export class AddAccountComponent {
       skins: 0,
       accountLevel: 0,
       championsOwned: 0,
+      accLvlType: '',
+      acctosell: false,
     });
+  }
+
+  toggleAcctosell() {
+    const formValues = this.accountForm.value;
+    // Convert the boolean value to 0 or 1
+    const acctosellValue = formValues.acctosell ? 1 : 0;
+    // Update the form value with the converted value
+    this.accountForm.patchValue({ acctosell: acctosellValue });
+
+
+    console.log(acctosellValue)
   }
 
   onSubmit() {
@@ -98,6 +111,8 @@ export class AddAccountComponent {
         skins: 0,
         accountLevel: 0,
         championsOwned: 0,
+        accLvlType: '',
+        acctosell: false,
       });
     } else {
       // Mark all form controls as touched to display validation errors

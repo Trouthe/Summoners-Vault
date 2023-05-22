@@ -54,20 +54,25 @@
 
                             <div class="flex flex-col pt-2 bg-[rgba(255,255,255,0.2)] rounded-b">
                                 <label for="" class="mx-2 text-sm">Account Name</label>
-                                <input type="text" id="accountName" formControlName="accountName" class="input m-2" placeholder="Name">
+                                <input type="text" id="accountName" formControlName="accountName" class="input m-2"
+                                    placeholder="Name">
                                 <div *ngIf="accountName.touched && accountName.invalid" class="error-message ml-3 mb-2">
                                     Account Name is required.
                                 </div>
 
                                 <label for="" class="mx-2 text-sm">Password</label>
-                                <input type="password" id="accountPassword" formControlName="accountPassword" class="input m-2" placeholder="Password">
-                                <div *ngIf="accountPassword.touched && accountPassword.invalid" class="error-message ml-3 mb-2">
+                                <input type="password" id="accountPassword" formControlName="accountPassword"
+                                    class="input m-2" placeholder="Password">
+                                <div *ngIf="accountPassword.touched && accountPassword.invalid"
+                                    class="error-message ml-3 mb-2">
                                     Password is required.
                                 </div>
 
                                 <label for="" class="mx-2 text-sm">Summoner Display Name</label>
-                                <input type="text" id="summonerDisplayName" formControlName="summonerDisplayName" class="input m-2" placeholder="Summoner">
-                                <div *ngIf="summonerDisplayName.touched && summonerDisplayName.invalid" class="error-message ml-3 mb-2">
+                                <input type="text" id="summonerDisplayName" formControlName="summonerDisplayName"
+                                    class="input m-2" placeholder="Summoner">
+                                <div *ngIf="summonerDisplayName.touched && summonerDisplayName.invalid"
+                                    class="error-message ml-3 mb-2">
                                     Summoner Name is required.
                                 </div>
                             </div>
@@ -88,12 +93,14 @@
                                     <option value="1" class="text-sm">Yes</option>
                                 </select>
 
-                                <div *ngIf="accountForm.get('emailVerification')?.value === 'yes'" class="flex flex-col">
+                                <div *ngIf="accountForm.get('emailVerification')?.value === 'yes'"
+                                    class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Account Email</label>
                                     <input type="email" id="accountEmail" placeholder="Email" class="input m-2">
 
                                     <label for="" class="mx-2 text-sm">Account Password</label>
-                                    <input type="password" id="accountEmailPassword" placeholder="Password" class="input m-2">
+                                    <input type="password" id="accountEmailPassword" placeholder="Password"
+                                        class="input m-2">
                                 </div>
                             </div>
                         </div>
@@ -117,7 +124,8 @@
                                 </select>
 
                                 <label for="" class="mx-2 text-sm">Amount of Blue Essence</label>
-                                <input type="number" id="blueEssence" placeholder="Blue Essence" class="input m-2" required>
+                                <input type="number" id="blueEssence" placeholder="Blue Essence" class="input m-2"
+                                    required>
 
                                 <label for="" class="mx-2 text-sm">Amount of Orange Essence</label>
                                 <input type="number" id="orangeEssence" placeholder="Orange Essence" class="input m-2">
@@ -133,10 +141,25 @@
 
                                 <label for="" class="mx-2 text-sm">Champions Owned</label>
                                 <input type="number" id="championsOwned" placeholder="Champions" class="input m-2">
+
+                                <div class="flex flex-row items-center justify-center my-auto mr-auto">
+                                    <label for="" class="mx-2 text-sm">Leveling Type:</label>
+                                    <input type="radio" value="h" formControlName="accLvlType" class="mx-2">
+                                    Handlevelled
+
+                                    <input type="radio" value="b" formControlName="accLvlType" class="mx-2">
+                                    Botted
+                                </div>
+
+                                <div class="flex flex-row items-center justify-center my-auto mr-auto">
+                                    <label for="" class="mx-2 text-sm">Advertise Account: </label>
+                                    <input type="checkbox" formControlName="acctosell" (change)="toggleAcctosell()" class=" m-2">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="bg-red-700 p-5 rounded-full" [disabled]="accountForm.invalid">Submit</button>
+                    <button type="submit" class="bg-red-700 p-5 rounded-full"
+                        [disabled]="accountForm.invalid">Submit</button>
                 </form>
             </div>
         </div>

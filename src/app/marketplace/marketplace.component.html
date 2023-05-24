@@ -86,50 +86,80 @@
                                 <p class="mt-5 text-xl font-bold">{{x.accPrice}} USD</p>
                                 <button
                                     class="bg-green-400 hover:bg-green-600 px-10 py-1 rounded-md text-xl my-3 text-white"
-                                    (click)="togglePopup()">BUY</button>
+                                    (click)="togglePopup(i, false)">BUY</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- POPUP -->
-                <div [hidden]="!showPopup">
+                <div [hidden]="!isPopupVisible(i)">
                     <div class="overlay" (mousemove)="changePerspective($event)"
                         (mouseleave)="resetPerspective($event)">
-                        <div class="flex flex-col bg-white p-3 rounded-lg max-w-2xl">
+                        <div class="flex flex-col bg-white p-3 pl-0 rounded-lg max-w-3xl">
                             <!-- Top line -->
-                            <div class="flex flex-row justify-between content-between border border-red-500">
-                                <p>AC{{x.acc_id}}</p>
-                                <button (click)="togglePopup()">X</button>
+                            <div class="flex flex-row justify-between content-between ">
+                                <p class="pl-3">AC{{x.acc_id}}</p>
+                                <button (keyup)="handleKeyPress($event)" (click)="togglePopup(i, true)" class="bg-red-500 hover:bg-red-600 transition-all duration-100 text-white rounded-full px-2">X</button>
                             </div>
 
-                            <div class="flex flex-row border border-red-500">
+                            <div class="flex flex-row ">
                                 <div class="mx-auto mt-10">
-                                    <img width="150px"
+                                    <img width="500px"
                                         src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
                                         class="image" style="transform: scale(0.98);">
+                                    <div class="text-center">
+                                        <p class=" font-semibold">Rank:</p>
+                                        <p class="text-sm text-blue-500">{{x.accRank}}</p>
+                                    </div>
                                 </div>
 
-                                <div class="border border-red-500">
+                                <div class="flex flex-col">
                                     <p class="text-xl font-bold">ACCOUNT PROPERTIES</p>
-                                    <div class="flex flex-row flex-wrap border border-red-500 ml-5 justify-between">
-                                        <div class="border border-red-500">
+                                    <div class="flex flex-row flex-wrap ml-5 p-7 gap-x-7 gap-y-5 justify-stretch">
+                                        <div>
+                                            <p class=" font-semibold">Rank:</p>
+                                            <p class="text-sm text-blue-500">{{x.accRank}}</p>
+                                        </div>
+                                        <div>
                                             <p class=" font-semibold">Level</p>
-                                            <p class="text-sm">{{x.accLevel}}</p>
+                                            <p class="text-sm text-blue-500">{{x.accLevel}}</p>
                                         </div>
-                                        <div class="border border-red-500">
-                                            <p class=" font-semibold">Property 1:</p>
-                                            <p class="text-sm">Property 1 Details</p>
+                                        <div>
+                                            <p class=" font-semibold">Champions:</p>
+                                            <p class="text-sm text-blue-500">{{x.accChamps}}</p>
                                         </div>
-                                        <div class="border border-red-500">
-                                            <p class=" font-semibold">Property 1:</p>
-                                            <p class="text-sm">Property 1 Details</p>
+                                        <div>
+                                            <p class=" font-semibold">Blue Essence:</p>
+                                            <p class="text-sm text-blue-500">{{x.accPriCurr}}</p>
                                         </div>
-                                        <div class="border border-red-500">
-                                            <p class=" font-semibold">Property 1:</p>
-                                            <p class="text-sm">Property 1 Details</p>
+                                        <div>
+                                            <p class=" font-semibold">Orange Essence:</p>
+                                            <p class="text-sm text-blue-500">{{x.accOrangeEssence}}</p>
+                                        </div>
+                                        <div>
+                                            <p class=" font-semibold">Riot Points:</p>
+                                            <p class="text-sm text-blue-500">{{x.accSecCurr}}</p>
+                                        </div>
+                                        <div>
+                                            <p class=" font-semibold">Skins:</p>
+                                            <p class="text-sm text-blue-500">{{x.accSkins}}</p>
+                                        </div>
+                                        <div>
+                                            <p class=" font-semibold">E-Mail Verified:</p>
+                                            <p class="text-sm text-blue-500">{{ x.accVerification === '0' ? 'No' : 'Yes' }}</p>
+                                        </div>
+                                        <div>
+                                            <p class=" font-semibold">Level-up Type:</p>
+                                            <p class="text-sm text-blue-500">{{ x.accLvlType === 'h' ? 'Handelvelled' : 'Botted' }}</p>
+                                        </div>
+                                        <div>
+                                            <p class=" font-semibold">Server:</p>
+                                            <p class="text-sm text-blue-500">{{x.accServer}}</p>
                                         </div>
                                     </div>
+                                    <button class="ml-auto bg-green-400 hover:bg-green-600 px-10 py-1 rounded-md text-xl text-white"
+                                    (click)="togglePopup(i, true)">BUY</button>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 <div style="background: rgb(7, 18, 38);">
     <div class="m-0 p-0 flex flex-row items-center justify-center">
         <!-- Left panel -->
-        <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]"
+        <div class="z-50 flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]"
             style="box-shadow: inset -4px 0px 5px #00000035">
 
             <div class="flex p-5 text-white">
@@ -48,118 +48,140 @@
         </div>
 
         <!-- Marketplace -->
-        <div class="flex-row overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
+        <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
             <!-- MARKETPLACE CODE HERE -->
             <!-- marketplace accounts -->
-            <div *ngFor="let x of m_Accounts; let i=index">
-                <!-- each account card -->
-                <!-- <app-marketplace-account [account]="x"></app-marketplace-account> -->
-                <div class="flex flex-row">
-                    <!-- each account -->
-                    <div class="flex flex-col flex-wrap mx-7 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
-                        (mousemove)="changePerspective($event)" (mouseleave)="resetPerspective($event)">
-                        <div class="mx-auto">
-                            <img width="150px"
-                                src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
-                                class="image">
-                        </div>
-                        <div class="bg-white rounded-b-xl p-1 text-black px-3 w-auto">
-                            <!-- {{x.accRank}}
-                            {{'$' + x.accPrice}} -->
-                            <div class="flex flex-row items-between justify-between">
-                                <div class="flex flex-col mx-auto">
-                                    <p class="underline my-1">Rank</p>
-                                    <p>{{x.accRank}}</p>
-                                </div>
-
-                                <div style="width: 0.01rem;" class=" mx-2 my-1 bg-[rgba(0,0,0,0.25)]">
-                                </div>
-
-                                <div class="flex flex-col mx-auto">
-                                    <p class="underline my-1">Server</p>
-                                    <p>{{ x.accServer === 'EUW1' ? 'EUW' : (x.accServer === 'EUN1' ?
-                                        'EUNE' : (x.accServer === 'NA1' ? 'NA' : x.accServer)) }}</p>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col items-center justify-center">
-                                <p class="mt-5 text-xl font-bold">{{x.accPrice}} USD</p>
-                                <button
-                                    class="bg-green-400 hover:bg-green-600 px-10 py-1 rounded-md text-xl my-3 text-white"
-                                    (click)="togglePopup(i, false)">BUY</button>
-                            </div>
-                        </div>
+            <div>
+                <p class="text-white text-4xl p-10 font-extralight">Marketplace Accounts</p>
+            </div>
+            <div class="flex flex-row">
+                <div class="flex-row overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
+                    <div *ngIf="loading" class="z-10 flex justify-center items-center fixed left-0 top-0 h-screen w-screen overflow-hidden">
+                        <app-spinner></app-spinner>
                     </div>
-                </div>
-
-                <!-- POPUP -->
-                <div [hidden]="!isPopupVisible(i)">
-                    <div class="overlay" (mousemove)="changePerspective($event)"
-                        (mouseleave)="resetPerspective($event)">
-                        <div class="flex flex-col bg-white p-3 pl-0 rounded-lg max-w-3xl">
-                            <!-- Top line -->
-                            <div class="flex flex-row justify-between content-between ">
-                                <p class="pl-3">AC{{x.acc_id}}</p>
-                                <button (keyup)="handleKeyPress($event)" (click)="togglePopup(i, true)" class="bg-red-500 hover:bg-red-600 transition-all duration-100 text-white rounded-full px-2">X</button>
-                            </div>
-
-                            <div class="flex flex-row ">
-                                <div class="mx-auto mt-10">
-                                    <img width="500px"
-                                        src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
-                                        class="image" style="transform: scale(0.98);">
-                                    <div class="text-center">
-                                        <p class=" font-semibold">Rank:</p>
-                                        <p class="text-sm text-blue-500">{{x.accRank}}</p>
+                    <div *ngIf="!loading" class="flex flex-row">
+                        <div *ngFor="let x of m_Accounts; let i=index">
+                            <!-- each account card -->
+                            <!-- <app-marketplace-account [account]="x"></app-marketplace-account> -->
+                            <div class="flex flex-row">
+                                <!-- each account -->
+                                <div class="flex flex-col flex-wrap mx-7 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
+                                    (mousemove)="changePerspective($event)" (mouseleave)="resetPerspective($event)">
+                                    <div class="mx-auto">
+                                        <img width="150px"
+                                            src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
+                                            class="image">
+                                    </div>
+                                    <div class="bg-white rounded-b-xl p-1 text-black px-3 w-auto">
+                                        <!-- {{x.accRank}}
+                                        {{'$' + x.accPrice}} -->
+                                        <div class="flex flex-row items-between justify-between">
+                                            <div class="flex flex-col mx-auto">
+                                                <p class="underline my-1 font-bold">Rank</p>
+                                                <p class="text-blue-500">{{x.accRank}}</p>
+                                            </div>
+            
+                                            <div style="width: 0.01rem;" class=" mx-2 my-1 bg-[rgba(0,0,0,0.25)]">
+                                            </div>
+            
+                                            <div class="flex flex-col mx-auto">
+                                                <p class="underline my-1 font-bold">Server</p>
+                                                <p class="text-blue-500">{{ x.accServer === 'EUW1' ? 'EUW' : (x.accServer === 'EUN1' ?
+                                                    'EUNE' : (x.accServer === 'NA1' ? 'NA' : x.accServer)) }}</p>
+                                            </div>
+                                        </div>
+            
+                                        <div class="flex flex-col items-center justify-center">
+                                            <p class="mt-5 text-xl font-bold">{{x.accPrice}} USD</p>
+                                            <button
+                                                class="bg-green-400 hover:bg-green-600 px-10 py-1 rounded-md text-xl my-3 text-white"
+                                                (click)="togglePopup(i, false)">
+                                                BUY
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="flex flex-col">
-                                    <p class="text-xl font-bold">ACCOUNT PROPERTIES</p>
-                                    <div class="flex flex-row flex-wrap ml-5 p-7 gap-x-7 gap-y-5 justify-stretch">
-                                        <div>
-                                            <p class=" font-semibold">Rank:</p>
-                                            <p class="text-sm text-blue-500">{{x.accRank}}</p>
+                            </div>
+            
+                            <!-- POPUP -->
+                            <div [hidden]="!isPopupVisible(i)">
+                                <div class="overlay" (mousemove)="changePerspective($event)"
+                                    (mouseleave)="resetPerspective($event)">
+                                    <div class="flex flex-col bg-white p-3 pl-0 rounded-lg max-w-3xl">
+                                        <!-- Top line -->
+                                        <div class="flex flex-row justify-between content-between ">
+                                            <p class="pl-4 font-sans">AC{{x.acc_id}}</p>
+                                            <button (keyup)="handleKeyPress($event)" (click)="togglePopup(i, true)"
+                                                class="bg-red-500 hover:bg-red-600 transition-all duration-100 text-white rounded-md px-2">
+                                                X
+                                            </button>
                                         </div>
-                                        <div>
-                                            <p class=" font-semibold">Level</p>
-                                            <p class="text-sm text-blue-500">{{x.accLevel}}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Champions:</p>
-                                            <p class="text-sm text-blue-500">{{x.accChamps}}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Blue Essence:</p>
-                                            <p class="text-sm text-blue-500">{{x.accPriCurr}}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Orange Essence:</p>
-                                            <p class="text-sm text-blue-500">{{x.accOrangeEssence}}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Riot Points:</p>
-                                            <p class="text-sm text-blue-500">{{x.accSecCurr}}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Skins:</p>
-                                            <p class="text-sm text-blue-500">{{x.accSkins}}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">E-Mail Verified:</p>
-                                            <p class="text-sm text-blue-500">{{ x.accVerification === '0' ? 'No' : 'Yes' }}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Level-up Type:</p>
-                                            <p class="text-sm text-blue-500">{{ x.accLvlType === 'h' ? 'Handelvelled' : 'Botted' }}</p>
-                                        </div>
-                                        <div>
-                                            <p class=" font-semibold">Server:</p>
-                                            <p class="text-sm text-blue-500">{{x.accServer}}</p>
+            
+                                        <div class="flex flex-row ">
+                                            <div class="mx-auto mt-10">
+                                                <img width="500px"
+                                                    src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
+                                                    class="image" style="transform: scale(0.98);">
+                                                <div class="text-center">
+                                                    <p class="text-lg font-bold">Rank:</p>
+                                                    <p class="text-blue-500 font-semibold">{{x.accRank}}</p>
+                                                </div>
+                                            </div>
+            
+                                            <div class="flex flex-col">
+                                                <p class="text-xl font-bold">ACCOUNT PROPERTIES</p>
+                                                <div class="flex flex-row flex-wrap ml-5 p-7 gap-x-7 gap-y-5">
+                                                    
+                                                    <div>
+                                                        <p class=" font-semibold">Account Level:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accLevel}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Champions:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accChamps}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Blue Essence:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accPriCurr}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Orange Essence:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accOrangeEssence}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Riot Points:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accSecCurr}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Skins:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accSkins}}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">E-Mail Verified:</p>
+                                                        <p class="text-sm text-blue-500">{{ x.accVerification === '0' ? 'No' : 'Yes'
+                                                            }}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Level-up Type:</p>
+                                                        <p class="text-sm text-blue-500">{{ x.accLvlType === 'h' ? 'Handelvelled' :
+                                                            'Botted' }}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p class=" font-semibold">Server:</p>
+                                                        <p class="text-sm text-blue-500">{{x.accServer}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-col ml-auto">
+                                                    <p class="mb-1">Price: {{x.accPrice}} USD</p>
+                                                    <button
+                                                        class="bg-green-400 hover:bg-green-600 ml-auto px-10 py-1 rounded-md text-xl text-white"
+                                                        (click)="togglePopup(i, true)">
+                                                        BUY
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button class="ml-auto bg-green-400 hover:bg-green-600 px-10 py-1 rounded-md text-xl text-white"
-                                    (click)="togglePopup(i, true)">BUY</button>
                                 </div>
                             </div>
                         </div>

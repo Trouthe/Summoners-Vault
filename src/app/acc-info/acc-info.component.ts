@@ -33,7 +33,7 @@ export class AccInfoComponent {
     if (this.serv.getLoading()) {
       this.loading = true;
       this.loadInterval = setTimeout(() => {
-        console.log('checking again...')
+        // console.log('checking again...')
         this.checkLoading();
       }, 400); // Delay in milliseconds before checking again
     } else {

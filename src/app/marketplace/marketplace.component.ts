@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ServicesService } from '../services.service';
 
 @Component({
   selector: 'app-marketplace',
@@ -13,6 +14,9 @@ export class MarketplaceComponent {
 
   m_Accounts: any[] = [];
 
+  loading: boolean = true;
+  loadInterval: any;
+
   // Track which account is selected
   selectedAccountIndex: number | null = null;
 
@@ -20,6 +24,7 @@ export class MarketplaceComponent {
     private authService: AuthService,
     private http: HttpClient,
     private router: Router,
+    private serv: ServicesService,
   ) { }
 
   ngOnInit(): void {
@@ -27,15 +32,30 @@ export class MarketplaceComponent {
     if (!this.authService.isloggedIn())
       this.router.navigate(['/login']);
 
-    this.getAccountsToSell();
-
     // Init keyup
     document.addEventListener('keyup', this.handleKeyPress.bind(this));
+    
+    this.getAccountsToSell();
+    this.checkLoading();
+  }
+
+  checkLoading():void  {
+    if (this.serv.getLoading()) {
+          this.loading = true;
+          this.loadInterval = setTimeout(() => {
+            // console.log('checking again...')
+            this.checkLoading();
+          }, 400); // Delay in milliseconds before checking again
+        } else {
+          this.loading = false;
+          clearTimeout(this.loadInterval);
+        }
   }
 
   getAccountsToSell(): void {
     this.http.get<any>(environment.marketplaceAccounts).subscribe(
       (response) => {
+        this.serv.setLoading(false);
         console.log(response); // Log the response data
         this.m_Accounts = response;
       },

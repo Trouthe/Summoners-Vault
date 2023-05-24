@@ -2,7 +2,7 @@
     <div class="m-0 p-0 flex flex-row items-center justify-center">
 
         <!-- Left panel -->
-        <div class="flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
+        <div class="z-50 flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
 
             <div class="flex p-5 text-white">
                 <h3 class="font-semibold text-xl">Extra Actions</h3>
@@ -45,7 +45,7 @@
         
         <!-- Cards -->
         <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
-            <div *ngIf="loading" class="flex justify-center items-center h-screen overflow-hidden">
+            <div *ngIf="loading" class="z-10 flex justify-center items-center fixed left-0 top-0 h-screen w-screen overflow-hidden">
                 <app-spinner></app-spinner>
             </div>
             <div *ngIf="!loading" class="text-white text-4xl p-10 font-extralight">

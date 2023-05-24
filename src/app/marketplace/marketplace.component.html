@@ -56,7 +56,7 @@
                 <!-- <app-marketplace-account [account]="x"></app-marketplace-account> -->
                 <div class="flex flex-row">
                     <!-- each account -->
-                    <div class="flex flex-col mx-10 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
+                    <div class="flex flex-col flex-wrap mx-7 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
                         (mousemove)="changePerspective($event)" (mouseleave)="resetPerspective($event)">
                         <div class="mx-auto">
                             <img width="150px imagecontainer" src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png" class="image">

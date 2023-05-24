@@ -28,7 +28,8 @@
             <!-- Marketplace -->
             <div class="flex w-full items-center justify-center text-white">
                 <a routerLink="/marketplace" class="py-5 flex flex-row items-center justify-center active w-full">
-                    <img width="30px" src="../../assets/icons/shopping-cart.png" alt="Your Accounts" style="filter: invert();">
+                    <img width="30px" src="../../assets/icons/shopping-cart.png" alt="Your Accounts"
+                        style="filter: invert();">
                     <p class="pl-3">Marketplace</p>
                 </a>
             </div>
@@ -47,11 +48,46 @@
         </div>
 
         <!-- Marketplace -->
-        <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
+        <div class="flex-row overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
             <!-- MARKETPLACE CODE HERE -->
-            <div *ngFor="let x of m_Accounts; let i=index" class="text-white">
-                {{x.accRank}}
-                {{'$' + x.accPrice}}
+            <!-- marketplace accounts -->
+            <div *ngFor="let x of m_Accounts; let i=index">
+                <!-- each account card -->
+                <!-- <app-marketplace-account [account]="x"></app-marketplace-account> -->
+                <div class="flex flex-row">
+                    <!-- each account -->
+                    <div class="flex flex-col mx-10 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
+                        (mousemove)="changePerspective($event)" (mouseleave)="resetPerspective($event)">
+                        <div class="mx-auto">
+                            <img width="150px imagecontainer" src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png" class="image">
+                        </div>
+                        <div class="bg-white rounded-b-xl p-1 text-black px-3 w-auto">
+                            <!-- {{x.accRank}}
+                            {{'$' + x.accPrice}} -->
+                            <div class="flex flex-row items-between justify-between">
+                                <div class="flex flex-col mx-auto">
+                                    <p class="underline my-1">Rank</p>
+                                    <p>{{x.accRank}}</p>
+                                </div>
+
+                                <div style="width: 0.01rem;"
+                                    class=" mx-2 my-1 bg-[rgba(0,0,0,0.25)]">
+                                </div>
+
+                                <div class="flex flex-col mx-auto">
+                                    <p class="underline my-1">Server</p>
+                                    <p>{{ x.accServer === 'EUW1' ? 'EUW' : (x.accServer === 'EUN1' ?
+                                        'EUNE' : (x.accServer === 'NA1' ? 'NA' : x.accServer)) }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-center justify-center">
+                                <p class="mt-5 text-xl font-bold">{{x.accPrice}} USD</p>
+                                <button class="bg-blue-400 hover:bg-blue-600 px-10 py-1 rounded-md text-xl my-3 text-white">BUY</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

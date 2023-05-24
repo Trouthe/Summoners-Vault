@@ -48,20 +48,25 @@ export class AddAccountComponent {
       accountName: this.accountName,
       accountPassword: this.accountPassword,
       summonerDisplayName: this.summonerDisplayName,
-      emailVerification: [0],
+      emailVerification: 0,
       accountEmail: [''],
       accountEmailPassword: [''],
       server: ['EUW1'],
-      blueEssence: [0],
-      orangeEssence: [0],
-      riotPoints: [0],
-      skins: [0],
-      championsOwned: [0],
+      blueEssence: 0,
+      orangeEssence: 0,
+      riotPoints: 0,
+      skins: 0,
+      accountLevel: 0,
+      championsOwned: 0,
       accLvlType: [''],
-      acctosell: [0],
+      acctosell: 0,
       accPrice: 0,
       rank: ['Unranked'],
     });
+  }
+
+  test() {
+    console.log(this.accountForm.value);
   }
 
   toggleAcctosell() {
@@ -114,6 +119,7 @@ export class AddAccountComponent {
         orangeEssence: 0,
         riotPoints: 0,
         skins: 0,
+        accountLevel: 0,
         championsOwned: 0,
         accLvlType: '',
         acctosell: 0,

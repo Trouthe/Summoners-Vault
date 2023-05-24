@@ -16,13 +16,15 @@
                     <!-- ACCOUNT INFO -->
                     <div class="flex flex-row">
                         <!-- SOLO Q INFO -->
-                        <div class="flex flex-row text-lg">
+                        <div *ngIf="x.soloqWins" class="flex flex-row text-lg">
                             <div style="transform: rotate(-90deg); margin-right: -27px; margin-top: 0px; opacity: 0.4; font-weight: lighter;"
                                 class="text-sm">SOLO Q</div>
+                            <!-- solo q image -->
                             <div>
                                 <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rank}}.png"
                                     alt="Ranked Emblem" style="margin-left: -.75rem;">
                             </div>
+                            <!-- solo q info -->
                             <div>
                                 <div class="mt-1">
                                     <span class="">{{x.rank | titlecase}}<span
@@ -44,9 +46,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- DIVIDER -->
-                        <div style="width: 1px;" class="h-full ml-9 bg-gradient-to-b from-transparent via-white to-transparent"></div>
 
                         <!-- FLEX Q INFO -->
                         <!-- check if flex wins and losses exist -->
@@ -82,11 +81,11 @@
                             </div>
                         </div>
 
-                        <!-- If they don't exist (unranked) -->
-                        <div *ngIf="!x.flexqWins && !x.flexqLosses">
-                            <div class="flex flex-row text-lg ml-10">
+                        <!-- If no solo q ranked data exist -->
+                        <div *ngIf="!x.soloqWins && !x.soloqLosses">
+                            <div class="flex flex-row text-lg">
                                 <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;"
-                                    class="text-sm">FLEX 5V5</div>
+                                    class="text-sm">SOLO Q</div>
                                 <div>
                                     <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png"
                                         alt="Unranked Emblem" style="margin-left: -.75rem;">
@@ -97,11 +96,11 @@
                             </div>
                         </div>
 
-                        <!-- If neither exist -->
-                        <div *ngIf="!x.soloqWins && !x.soloqLosses">
+                        <!-- If no flex q ranked data exists -->
+                        <div *ngIf="!x.flexqWins && !x.flexqLosses">
                             <div class="flex flex-row text-lg ml-10">
                                 <div style="transform: rotate(-90deg); margin-right: -27px; opacity: 0.4; font-weight: lighter;"
-                                    class="text-sm">SOLO Q</div>
+                                    class="text-sm">FLEX 5V5</div>
                                 <div>
                                     <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png"
                                         alt="Unranked Emblem" style="margin-left: -.75rem;">

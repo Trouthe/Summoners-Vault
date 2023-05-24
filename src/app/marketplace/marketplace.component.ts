@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
 export class MarketplaceComponent {
 
   m_Accounts: any[] = [];
+  
+  showPopup:boolean = true;
 
   constructor(
     private authService: AuthService,
@@ -68,4 +70,9 @@ export class MarketplaceComponent {
   }
 
   extractNumbersFromString(str: string): string {return str.replace(/[0-9\s]+/g, '')}
+
+  togglePopup() {
+    // invert the state of it
+    this.showPopup = !this.showPopup;
+  }
 }

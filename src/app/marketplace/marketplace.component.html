@@ -59,7 +59,9 @@
                     <div class="flex flex-col flex-wrap mx-7 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
                         (mousemove)="changePerspective($event)" (mouseleave)="resetPerspective($event)">
                         <div class="mx-auto">
-                            <img width="150px imagecontainer" src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png" class="image">
+                            <img width="150px"
+                                src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
+                                class="image">
                         </div>
                         <div class="bg-white rounded-b-xl p-1 text-black px-3 w-auto">
                             <!-- {{x.accRank}}
@@ -70,8 +72,7 @@
                                     <p>{{x.accRank}}</p>
                                 </div>
 
-                                <div style="width: 0.01rem;"
-                                    class=" mx-2 my-1 bg-[rgba(0,0,0,0.25)]">
+                                <div style="width: 0.01rem;" class=" mx-2 my-1 bg-[rgba(0,0,0,0.25)]">
                                 </div>
 
                                 <div class="flex flex-col mx-auto">
@@ -83,7 +84,53 @@
 
                             <div class="flex flex-col items-center justify-center">
                                 <p class="mt-5 text-xl font-bold">{{x.accPrice}} USD</p>
-                                <button class="bg-blue-400 hover:bg-blue-600 px-10 py-1 rounded-md text-xl my-3 text-white">BUY</button>
+                                <button
+                                    class="bg-green-400 hover:bg-green-600 px-10 py-1 rounded-md text-xl my-3 text-white"
+                                    (click)="togglePopup()">BUY</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POPUP -->
+                <div [hidden]="!showPopup">
+                    <div class="overlay" (mousemove)="changePerspective($event)"
+                        (mouseleave)="resetPerspective($event)">
+                        <div class="flex flex-col bg-white p-3 rounded-lg max-w-2xl">
+                            <!-- Top line -->
+                            <div class="flex flex-row justify-between content-between border border-red-500">
+                                <p>AC{{x.acc_id}}</p>
+                                <button (click)="togglePopup()">X</button>
+                            </div>
+
+                            <div class="flex flex-row border border-red-500">
+                                <div class="mx-auto mt-10">
+                                    <img width="150px"
+                                        src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
+                                        class="image" style="transform: scale(0.98);">
+                                </div>
+
+                                <div class="border border-red-500">
+                                    <p class="text-xl font-bold">ACCOUNT PROPERTIES</p>
+                                    <div class="flex flex-row flex-wrap border border-red-500 ml-5 justify-between">
+                                        <div class="border border-red-500">
+                                            <p class=" font-semibold">Level</p>
+                                            <p class="text-sm">{{x.accLevel}}</p>
+                                        </div>
+                                        <div class="border border-red-500">
+                                            <p class=" font-semibold">Property 1:</p>
+                                            <p class="text-sm">Property 1 Details</p>
+                                        </div>
+                                        <div class="border border-red-500">
+                                            <p class=" font-semibold">Property 1:</p>
+                                            <p class="text-sm">Property 1 Details</p>
+                                        </div>
+                                        <div class="border border-red-500">
+                                            <p class=" font-semibold">Property 1:</p>
+                                            <p class="text-sm">Property 1 Details</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

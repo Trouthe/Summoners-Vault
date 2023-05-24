@@ -101,14 +101,13 @@
                                     <option value="1" class="text-sm">Yes</option>
                                 </select>
 
-                                <div *ngIf="accountForm.get('emailVerification')?.value === 'yes'"
+                                <div *ngIf="accountForm.get('emailVerification')?.value == 1"
                                     class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Account Email</label>
-                                    <input type="email" id="accountEmail" placeholder="Email" class="input m-2">
+                                    <input type="email" formControlName="accountEmail" placeholder="Email" class="input m-2">
 
                                     <label for="" class="mx-2 text-sm">Account Password</label>
-                                    <input type="password" id="accountEmailPassword" placeholder="Password"
-                                        class="input m-2">
+                                    <input type="password" formControlName="accountEmailPassword" placeholder="Password" class="input m-2">
                                 </div>
                             </div>
                         </div>
@@ -178,33 +177,33 @@
 
                                 <div class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Amount of Blue Essence</label>
-                                    <input type="number" id="blueEssence" placeholder="Blue Essence" class="input m-2">
+                                    <input type="number" formControlName="blueEssence" placeholder="Blue Essence" class="input m-2">
                                 </div>
 
                                 <div class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Amount of Orange Essence</label>
-                                    <input type="number" id="orangeEssence" placeholder="Orange Essence"
+                                    <input type="number" formControlName="orangeEssence" placeholder="Orange Essence"
                                         class="input m-2">
                                 </div>
 
                                 <div class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Amount of Riot Points</label>
-                                    <input type="number" id="riotPoints" placeholder="Riot Points" class="input m-2">
+                                    <input type="number" formControlName="riotPoints" placeholder="Riot Points" class="input m-2">
                                 </div>
 
                                 <div class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Skins</label>
-                                    <input type="number" id="skins" placeholder="Skins" class="input m-2">
+                                    <input type="number" formControlName="skins" placeholder="Skins" class="input m-2">
                                 </div>
 
                                 <div class="flex flex-col">
-                                    <label for="" class="mx-2 text-sm">Account Level</label>
-                                    <input type="number" id="accountLevel" placeholder="Level" class="input m-2">
+                                    <label for="accountLevel" class="mx-2 text-sm">Account Level</label>
+                                    <input type="number" formControlName="accountLevel" (click)="test()" placeholder="Level" class="input m-2">
                                 </div>
 
                                 <div class="flex flex-col">
                                     <label for="" class="mx-2 text-sm">Champions Owned</label>
-                                    <input type="number" id="championsOwned" placeholder="Champions" class="input m-2">
+                                    <input type="number" formControlName="championsOwned" placeholder="Champions" class="input m-2">
                                 </div>
 
                                 <div class="flex flex-row items-center justify-center my-auto mr-auto">

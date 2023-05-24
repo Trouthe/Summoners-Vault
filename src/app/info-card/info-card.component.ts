@@ -22,6 +22,7 @@ import {
 export class InfoCardComponent {
   private accounts: any[] = [];
   private apiAccounts: any[] = [];
+  private API_RankInfo: any;
 
   combinedAccounts: any[] = [];
   expandedStates: boolean[] = [];
@@ -81,19 +82,20 @@ export class InfoCardComponent {
       const secondaryRequests = [];
 
       for (let i = 0; i < this.accounts.length; i++) {
-        let API_RankInfo =
+        this.API_RankInfo =
           environment.rankedInfo +
           '?summoner_id=' +
           encodeURIComponent(this.apiAccounts[i].id) +
           '&region=' +
           encodeURIComponent(this.accounts[i].accServer);
 
-        secondaryRequests.push(this.http.get<any[]>(API_RankInfo));
+        secondaryRequests.push(this.http.get<any[]>(this.API_RankInfo));
         // console.log(API_RankInfo);
       }
 
       forkJoin(secondaryRequests).subscribe((rankResults) => {
-        for (let i = 0; i < rankResults.length; i++) {
+
+        for (let i = 0; i < rankResults?.length; i++) {
           let summonerLevel = this.apiAccounts[i].summonerLevel;
           let summonerID = this.apiAccounts[i].id;
           let profileIconID = this.apiAccounts[i].profileIconId;
@@ -111,19 +113,17 @@ export class InfoCardComponent {
           // console.log(rankResults);
 
           // Filter ranks
-          if (rankResults[i].length > 0) {
+          if (rankResults[i] && rankResults[i].length > 0) {
             for (let j = 0; j < rankResults[i].length; j++) {
               if (rankResults[i][j].queueType === 'RANKED_SOLO_5x5') {
                 rank = rankResults[i][j].tier;
                 rankTier = rankResults[i][j].rank;
-
                 soloqWins = rankResults[i][j].wins;
                 soloqLosses = rankResults[i][j].losses;
                 soloqLP = rankResults[i][j].leaguePoints;
               } else if (rankResults[i][j].queueType === 'RANKED_FLEX_SR') {
                 rankFlex = rankResults[i][j].tier;
                 rankTierFlex = rankResults[i][j].rank;
-
                 flexqWins = rankResults[i][j].wins;
                 flexqLosses = rankResults[i][j].losses;
                 flexqLP = rankResults[i][j].leaguePoints;

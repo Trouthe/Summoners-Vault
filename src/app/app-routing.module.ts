@@ -6,6 +6,7 @@ import { AccInfoComponent } from './acc-info/acc-info.component';
 import { LoginpageComponent } from './loginpage/loginpage.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { MAccDetailsComponent } from './m-acc-details/m-acc-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginpageComponent },
   { path: 'add-account', component: AddAccountComponent },
   { path: 'marketplace', component: MarketplaceComponent },
+  { path: 'marketplace/:accountId', component: MAccDetailsComponent },
+
 ];
 
 @NgModule({

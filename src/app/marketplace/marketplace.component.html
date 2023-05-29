@@ -175,7 +175,8 @@
                                                     <p class="mb-1">Price: {{x.accPrice}} USD</p>
                                                     <button
                                                         class="bg-green-400 hover:bg-green-600 ml-auto px-10 py-1 rounded-md text-xl text-white"
-                                                        (click)="togglePopup(i, true)">
+                                                        [routerLink]="['/marketplace/', x.acc_id]" [state]="{ account: x }"
+                                                        >
                                                         BUY
                                                     </button>
                                                 </div>

@@ -15,6 +15,7 @@ import { LoginpageComponent } from './loginpage/loginpage.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { MAccDetailsComponent } from './m-acc-details/m-acc-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
     SpinnerComponent,
     AddAccountComponent,
     MarketplaceComponent,
+    MAccDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -123,4 +123,8 @@ export class MarketplaceComponent {
         this.selectedAccountIndex = null
     }
   }
+
+  logg(x: any){
+    console.log(x);
+  }
 }

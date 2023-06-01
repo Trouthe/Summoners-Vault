@@ -2,7 +2,7 @@
     <div class="m-0 p-0 flex flex-row items-center justify-center">
 
         <!-- Left panel -->
-        <div class="z-50 flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
+        <div class="z-50 hidden lg:flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]" style="box-shadow: inset -4px 0px 5px #00000035">
 
             <div class="flex p-5 text-white">
                 <h3 class="font-semibold text-xl">Extra Actions</h3>
@@ -34,13 +34,34 @@
 
             <!-- Logout -->
             <div class="flex mt-auto w-full items-center justify-center text-white">
-                <button (click)="logoutFunction()" class="inactive py-5 w-full flex flex-row items-center justify-center">
-                    <img width="32px" src="../../assets/icons/profile.png" alt="Logout" style="filter: invert();">
-                </button>
-                <button (click)="logoutFunction()" class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
+                <button (click)="logoutFunction()"
+                    class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
                     <img width="32px" src="../../assets/icons/logout.png" alt="Logout" style="filter: invert();">
                 </button>
             </div>
+        </div>
+
+        <!-- MOBILE NAVIGATION -->
+        <div class="lg:hidden fixed flex flex-row justify-center items-center bottom-0 h-20 z-50">
+            <button class="bg-white py-3 px-5 border-r-2 border-gray-100 rounded-tl-xl rounded-bl-sm"
+                    [routerLink]="'/add-account'">
+                <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account">
+            </button>
+
+            <button class="bg-white py-3 px-5 border-r-2 border-gray-100"
+                    [routerLink]="'/accountinfo'">
+                <img width="30px" src="../../assets/icons/list.png" alt="Your Accounts">
+            </button>
+            
+            <button class="bg-white py-3 px-5"
+                    [routerLink]="'/marketplace'">
+                <img width="30px" src="../../assets/icons/shopping-cart.png" alt="Marketplace">
+            </button>
+
+            <button class="bg-red-400 py-3 px-5 rounded-tr-sm rounded-br-xl"
+                    (click)="logoutFunction()">
+                <img width="30px" src="../../assets/icons/logout.png" alt="Logout">
+            </button>
         </div>
         
         <!-- Cards -->
@@ -51,7 +72,7 @@
             <div *ngIf="!loading" class="text-white text-4xl p-10 font-extralight">
                 Your Accounts
             </div>
-            <app-info-card></app-info-card>
+            <app-info-card class="lg:mb-0 mb-28"></app-info-card>
         </div>
     </div>
 </div>

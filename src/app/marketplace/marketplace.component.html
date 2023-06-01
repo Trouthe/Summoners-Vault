@@ -1,7 +1,7 @@
 <div style="background: rgb(7, 18, 38);">
     <div class="m-0 p-0 flex flex-row items-center justify-center">
         <!-- Left panel -->
-        <div class="z-50 flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]"
+        <div class="z-50 hidden lg:flex flex-col items-center justify-center w-64 h-screen bg-[#122a56]"
             style="box-shadow: inset -4px 0px 5px #00000035">
 
             <div class="flex p-5 text-white">
@@ -37,40 +37,65 @@
             <!-- Logout -->
             <div class="flex mt-auto w-full items-center justify-center text-white">
                 <button (click)="logoutFunction()"
-                    class="inactive py-5 w-full flex flex-row items-center justify-center">
-                    <img width="32px" src="../../assets/icons/profile.png" alt="Logout" style="filter: invert();">
-                </button>
-                <button (click)="logoutFunction()"
                     class="logout_inactive py-5 w-full flex flex-row items-center justify-center">
                     <img width="32px" src="../../assets/icons/logout.png" alt="Logout" style="filter: invert();">
                 </button>
             </div>
         </div>
 
+        <!-- MOBILE NAVIGATION -->
+        <div class="lg:hidden fixed flex flex-row justify-center items-center bottom-0 h-20 z-50">
+            <button class="bg-white py-3 px-5 border-r-2 border-gray-100 rounded-tl-xl rounded-bl-sm"
+                    [routerLink]="'/add-account'">
+                <img width="30px" src="../../assets/icons/add-photo.png" alt="Add Account">
+            </button>
+
+            <button class="bg-white py-3 px-5 border-r-2 border-gray-100"
+                    [routerLink]="'/accountinfo'">
+                <img width="30px" src="../../assets/icons/list.png" alt="Your Accounts">
+            </button>
+            
+            <button class="bg-white py-3 px-5"
+                    [routerLink]="'/marketplace'">
+                <img width="30px" src="../../assets/icons/shopping-cart.png" alt="Marketplace">
+            </button>
+
+            <button class="bg-red-400 py-3 px-5 rounded-tr-sm rounded-br-xl"
+                    (click)="logoutFunction()">
+                <img width="30px" src="../../assets/icons/logout.png" alt="Logout">
+            </button>
+        </div>
+
         <!-- Marketplace -->
         <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
             <!-- MARKETPLACE CODE HERE -->
             <!-- marketplace accounts -->
-            <div>
-                <p class="text-white text-4xl p-10 font-extralight">Marketplace Accounts</p>
+            <div class="sm:hidden lg:block md:block">
+                <p class="text-white text-2xl text-center lg:text-start lg:text-4xl p-10 font-extralight">Marketplace Accounts</p>
             </div>
             <div class="flex flex-row">
-                <div class="flex-row overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
-                    <div *ngIf="loading" class="z-10 flex justify-center items-center fixed left-0 top-0 h-screen w-screen overflow-hidden">
+                <div class="flex-row overflow-y-auto overflow-x-hidden m-0 p-0 flex h-auto w-screen mb-20">
+                    <div *ngIf="loading" class="z-10 flex flex-col justify-center items-center fixed left-0 top-0 h-screen w-screen overflow-hidden">
+                        <div class="sm:block md:hidden lg:hidden hidden">
+                            <p class="text-white text-2xl text-center lg:text-start lg:text-4xl p-10 font-extralight">Marketplace Accounts</p>
+                        </div>
                         <app-spinner></app-spinner>
                     </div>
-                    <div *ngIf="!loading" class="flex flex-row">
+                    <div *ngIf="!loading" class="flex flex-row flex-wrap lg:justify-start lg:items-start justify-center items-center md:justify-start md:items-start">
+                        <div class="sm:block lg:hidden md:hidden hidden w-full">
+                            <p class="text-white text-2xl text-center lg:text-start lg:text-4xl p-10 font-extralight">Marketplace Accounts</p>
+                        </div>
                         <div *ngFor="let x of m_Accounts; let i=index">
                             <!-- each account card -->
                             <!-- <app-marketplace-account [account]="x"></app-marketplace-account> -->
-                            <div class="flex flex-row">
+                            <div class="flex flex-row flex-wrap">
                                 <!-- each account -->
                                 <div class="flex flex-col flex-wrap mx-7 my-5 bg-gray-600 hover:scale-105 transition-all w-52 rounded-xl"
                                     (mousemove)="changePerspective($event)" (mouseleave)="resetPerspective($event)">
                                     <div class="mx-auto">
                                         <img width="150px"
                                             src="../../assets/emblems/Emblem_{{extractNumbersFromString(x.accRank) | uppercase}}.png"
-                                            class="image">
+                                            class="image z-10">
                                     </div>
                                     <div class="bg-white rounded-b-xl p-1 text-black px-3 w-auto">
                                         <!-- {{x.accRank}}
@@ -107,7 +132,7 @@
                             <div [hidden]="!isPopupVisible(i)">
                                 <div class="overlay" (mousemove)="changePerspective($event)"
                                     (mouseleave)="resetPerspective($event)">
-                                    <div class="flex flex-col bg-white p-3 pl-0 rounded-lg max-w-3xl">
+                                    <div class="flex flex-col bg-white p-3 pl-0 rounded-lg lg:max-w-3xl max-w-xl">
                                         <!-- Top line -->
                                         <div class="flex flex-row justify-between content-between ">
                                             <p class="pl-4 font-sans">AC{{x.acc_id}}</p>

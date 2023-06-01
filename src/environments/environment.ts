@@ -14,6 +14,7 @@ export const environment = {
   masteryInfo: 'https://spicysalmon.000webhostapp.com/masteryInfo.php',
   marketplaceAccounts: 'https://spicysalmon.000webhostapp.com/getMarketplaceAccounts.php',
   deleteAccount: 'https://spicysalmon.000webhostapp.com/deleteAccount.php',
+  checkoutAccount: 'https://spicysalmon.000webhostapp.com/checkoutAccount.php',
 };
 
 /*

@@ -49,7 +49,7 @@ export class InfoCardComponent {
     if (userID) {
       data.set('userID', userID);
       
-      console.log(data.toString());
+      // console.log(data.toString());
     }
 
     this.http
@@ -90,7 +90,7 @@ export class InfoCardComponent {
           encodeURIComponent(this.accounts[i].accServer);
 
         secondaryRequests.push(this.http.get<any[]>(this.API_RankInfo));
-        // console.log(API_RankInfo);
+        // console.log(this.API_RankInfo);
       }
 
       forkJoin(secondaryRequests).subscribe((rankResults) => {
@@ -144,18 +144,19 @@ export class InfoCardComponent {
           const championNames: any[] = [];
           let champions: any[];
 
+          // console.log(API_ChampionMastery);
+
           this.http.get<any[]>(API_ChampionMastery)
             .pipe(take(3))
             .subscribe(
               (data) => {
                 for (let k = 0; k < 3; k++) {
-                  championIds.push(data[k].championId);
-                  championPoints.push(data[k].championPoints);
-                  championLevels.push(data[k].championLevel);
-
                   this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
                     .subscribe(
                       (response: any) => {
+                        
+                        championIds.push(data[k].championId);
+
                         champions = Object.values<any>(response.data);
                         let filter = champions.filter((obj) => {
                           if (obj.key == data[k].championId) {
@@ -168,6 +169,9 @@ export class InfoCardComponent {
                             championNames.push(temp);
                           }
                         });
+                        
+                        championPoints.push(data[k].championPoints);
+                        championLevels.push(data[k].championLevel);
                       });
                 }
               });

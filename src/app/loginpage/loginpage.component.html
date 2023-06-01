@@ -32,8 +32,8 @@
             
             <div class="w-full max-w-3xl z-10">
                 <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eba2e93e-e25f-4528-8235-27eb869406ab/dcde5qi-1143cbac-e833-45a9-b78e-5e63cddc88f6.png/v1/fill/w_1024,h_869/rammus__okay__by_ieket_dcde5qi-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODY5IiwicGF0aCI6IlwvZlwvZWJhMmU5M2UtZTI1Zi00NTI4LTgyMzUtMjdlYjg2OTQwNmFiXC9kY2RlNXFpLTExNDNjYmFjLWU4MzMtNDVhOS1iNzhlLTVlNjNjZGRjODhmNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dPQhEEH2B3SNkLasPCmWhYDfGeqZ6ybDNlssOVMiNRc"
-                class="h-96 mx-auto my-20"
-                style="filter: drop-shadow(0 0 4rem rgba(255,255,255,.40));">
+                    class="h-96 mx-auto my-20"
+                    style="filter: drop-shadow(0 0 4rem rgba(255,255,255,.40));">
                 <div class="sm:text-sm xl:text-2xl text-gray-400 font-normal text-left">Your account marketplace and personal potfolio database to secure your personal information and never worry about forgetting your gaming data again.</div>
             </div>
         </div>
@@ -49,15 +49,18 @@
                         <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
                         <input class=" w-full text-black bg-transparent px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-[var(--gold4)]"
                             type="email" formControlName="email" required placeholder="mail@provider.com">
-                            <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
-                            <div *ngIf="loginForm.get('email')?.hasError('email')">Invalid email</div>
+                            <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')"
+                                class="text-sm text-red-500">Email is required</div>
+                            <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')"
+                                class="text-sm text-red-500">Invalid email</div>
                     </div>
                     <div class="mt-8 content-center">
                         <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Password</label>
                         <input
                             class="w-full text-black bg-transparent content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-[var(--gold4)]"
                             type="password" formControlName="password" placeholder="Enter your password">
-                            <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+                            <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')"
+                                class="text-sm text-red-500">Password is required</div>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="text-sm">

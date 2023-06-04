@@ -16,6 +16,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { MAccDetailsComponent } from './m-acc-details/m-acc-details.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MAccDetailsComponent } from './m-acc-details/m-acc-details.component';
     AddAccountComponent,
     MarketplaceComponent,
     MAccDetailsComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

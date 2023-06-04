@@ -5,6 +5,7 @@
         border-left: 15rem solid transparent;
     }
 </style>
+
 <div class="relative min-h-screen flex ">
     <div
         class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 ">
@@ -18,9 +19,9 @@
                 <p class="text-xl font-black">Summoner's Vault</p>
             </a>
             
-            <div class="w-full max-w-3xl z-10">
+            <div class="w-full max-w-2xl z-10">
                 <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/eba2e93e-e25f-4528-8235-27eb869406ab/dcde5qi-1143cbac-e833-45a9-b78e-5e63cddc88f6.png/v1/fill/w_1024,h_869/rammus__okay__by_ieket_dcde5qi-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODY5IiwicGF0aCI6IlwvZlwvZWJhMmU5M2UtZTI1Zi00NTI4LTgyMzUtMjdlYjg2OTQwNmFiXC9kY2RlNXFpLTExNDNjYmFjLWU4MzMtNDVhOS1iNzhlLTVlNjNjZGRjODhmNi5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.dPQhEEH2B3SNkLasPCmWhYDfGeqZ6ybDNlssOVMiNRc"
-                    class="h-96 mx-auto my-20"
+                    class="w-96 mx-auto my-20"
                     style="filter: drop-shadow(0 0 4rem rgba(255,255,255,.40));">
                 <div class="sm:text-sm xl:text-2xl text-gray-400 font-normal text-left">Your account marketplace and personal potfolio database to secure your personal information and never worry about forgetting your gaming data again.</div>
             </div>
@@ -28,7 +29,7 @@
         <div class="flex items-center justify-center w-full sm:w-auto h-full xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white">
             <div class="max-w-md w-full space-y-8">
                 <div class="text-center">
-                    <h2 class="mt-6 text-3xl font-bold text-gray-900">Login to Your Account</h2>
+                    <h2 class="mt-6 text-3xl font-bold text-gray-900">Create your account</h2>
                     <hr class="my-12 border-0 bg-gradient-to-r from-transparent via-[var(--gold4)] to-transparent rounded-full" style="height:3px"/>
                 </div>
                 <form class="mt-8 space-y-6" action="#" [formGroup]="loginForm" (ngSubmit)="onSubmit()" method="POST">
@@ -50,19 +51,15 @@
                             <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')"
                                 class="text-sm text-red-500">Password is required</div>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <div class="text-sm">
-                            <a href="#" class="text-indigo-400 hover:text-blue-500">Forgot your password?</a>
-                        </div>
-                    </div>
+
                     <div>
                         <button type="submit" class="transition-all ease-in-out hover:scale-105 w-full flex justify-center bg-[var(--blue4)] hover:bg-[var(--blue2)] text-gray-100 p-4 rounded-full font-semibold shadow-lg cursor-pointer duration-500">
-                            Sign in
+                            Sign Up
                         </button>
                     </div>
                     <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
-                        <span>Don't have an account?</span>
-                        <a routerLink="/signup" class="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Signup</a>
+                        <span>Already have an account?</span>
+                        <a routerLink="/login" class="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign in</a>
                     </p>
                 </form>
             </div>

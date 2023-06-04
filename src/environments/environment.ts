@@ -9,6 +9,7 @@ export const environment = {
   user_information: 'https://spicysalmon.000webhostapp.com/getUsers.php',
   accounts_information: 'https://spicysalmon.000webhostapp.com/getAccounts.php',
   login: 'https://spicysalmon.000webhostapp.com/login.php',
+  signup: 'https://spicysalmon.000webhostapp.com/signup.php',
   basicInfo: 'https://spicysalmon.000webhostapp.com/basicInfo.php',
   rankedInfo: 'https://spicysalmon.000webhostapp.com/rankedInfo.php',
   masteryInfo: 'https://spicysalmon.000webhostapp.com/masteryInfo.php',

@@ -2,19 +2,19 @@
     <div *ngIf="x.userID==uid">
         <div class="acc my-3 mx-7 p-3 pl-5 h-auto text-white" style="background-image: url('http://ddragon.leagueoflegends.com/cdn/img/champion/splash/{{x.championNames[0]}}_0.jpg');
             z-index: 2;">
-            <div class="flex flex-row mx-auto cursor-pointer" (click)="expandedStates[i] = !expandedStates[i]">
+            <div class="shrink-0 flex flex-row mx-auto cursor-pointer" (click)="expandedStates[i] = !expandedStates[i]">
                 <!--Switch Expanded States-->
                 <!-- Icon Section -->
-                <div class="flex flex-col">
+                <div class="flex flex-col shrink-0">
                     <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{x.profileIconId}}.png"
                         width="80px" class="profileIcon">
                     <div class="mx-auto profileLvl">{{x.summonerLevel}}</div>
                 </div>
                 <!-- Account Section -->
-                <div class="ml-7 text-xl flex flex-col">
+                <div class="ml-7 text-xl flex flex-col shrink-0">
                     <p>{{x.accIGN}}<span class="text-sm ml-2 opacity-25">[{{x.accServer}}]</span></p>
                     <!-- ACCOUNT INFO -->
-                    <div class="flex flex-row">
+                    <div class="flex flex-row flex-wrap shrikn-0">
                         <!-- SOLO Q INFO -->
                         <div *ngIf="x.soloqWins" class="flex flex-row text-lg">
                             <div style="transform: rotate(-90deg); margin-right: -27px; margin-top: 0px; opacity: 0.4; font-weight: lighter;"
@@ -22,7 +22,8 @@
                             <!-- solo q image -->
                             <div>
                                 <img width="85px" height="100px" src="../../assets/emblems/Emblem_{{x.rank}}.png"
-                                    alt="Ranked Emblem" style="margin-left: -.75rem;">
+                                    alt="Ranked Emblem" style="margin-left: -.75rem;"
+                                    class="hidden lg:block">
                             </div>
                             <!-- solo q info -->
                             <div>
@@ -56,7 +57,8 @@
                                 <div>
                                     <img width="85px" height="100px"
                                         src="../../assets/emblems/Emblem_{{x.rankFlex}}.png" alt="Ranked Emblem"
-                                        style="margin-left: -.75rem;">
+                                        style="margin-left: -.75rem;"
+                                        class="hidden lg:block">
                                 </div>
                                 <div>
                                     <div class="mt-1">
@@ -88,7 +90,8 @@
                                     class="text-sm">SOLO Q</div>
                                 <div>
                                     <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png"
-                                        alt="Unranked Emblem" style="margin-left: -.75rem;">
+                                        alt="Unranked Emblem" style="margin-left: -.75rem;"
+                                        class="hidden lg:block">
                                 </div>
                                 <div class="my-auto">
                                     Unranked
@@ -103,7 +106,8 @@
                                     class="text-sm">FLEX 5V5</div>
                                 <div>
                                     <img width="85px" height="100px" src="../../assets/emblems/Emblem_UNRANKED.png"
-                                        alt="Unranked Emblem" style="margin-left: -.75rem;">
+                                        alt="Unranked Emblem" style="margin-left: -.75rem;"
+                                        class="hidden lg:block">
                                 </div>
                                 <div class="my-auto">
                                     Unranked

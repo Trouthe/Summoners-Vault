@@ -68,9 +68,9 @@
         <!-- Add Account -->
         <div class="flex-col overflow-y-auto overflow-x-hidden m-0 p-0 flex h-screen w-screen">
             <div class="text-white">
-                <form class="mt-8 space-y-6" action="#" [formGroup]="accountForm" (ngSubmit)="onSubmit()" method="POST">
+                <form class="mt-8 space-y-6 mb-20" action="#" [formGroup]="accountForm" (ngSubmit)="onSubmit()" method="POST">
                     <!-- parent flex -->
-                    <div class="flex flex-wrap mx-20 mt-10 mb-10 gap-10">
+                    <div class="flex flex-wrap lg:mx-20 mx-5 md:mx-15 mt-10 mb-10 gap-10">
                         <!-- Basic Information -->
                         <div class="flex flex-col flex-grow">
                             <div class="flex flex-row items-center justify-center mr-auto">
@@ -133,15 +133,15 @@
                     </div>
 
                     <!-- Account Properties -->
-                    <div class="flex flex-wrap mx-20 mb-10">
-                        <div class="flex flex-col w-full">
+                    <div class="flex flex-wrap sm:justify-center sm:items-center lg:mx-20 mx-5 mb-10">
+                        <div class="flex flex-col flex-wrap w-full">
                             <div class="flex flex-row items-center justify-center mr-auto">
                                 <img width="31px" src="../../assets/icons/hexagons.png" style="filter: invert();"
                                     class="bg-[rgba(0,0,0,0.5)] p-1 mr-2 rounded-tl">
                                 <p class="bg-[rgba(255,255,255,0.3)] p-1 pr-3 -ml-2 rounded-tr">Account Properties</p>
                             </div>
 
-                            <div class="flex rounded-b flex-col flex-wrap h-[35vh] pt-2 bg-[rgba(255,255,255,0.2)]">
+                            <div class="flex rounded-b items-stretch justify-center  flex-col flex-wrap lg:h-[35vh] pt-2 bg-[rgba(255,255,255,0.2)]">
                                 <div>
                                     <label for="" class="mx-2 text-sm">Server</label>
                                     <select id="server" formControlName="server" class="input m-2">
@@ -225,7 +225,7 @@
                                     <input type="number" formControlName="championsOwned" placeholder="Champions" class="input m-2">
                                 </div>
 
-                                <div class="flex flex-row items-center justify-center my-auto mr-auto">
+                                <div class="flex flex-row flex-wrap items-center justify-center my-auto mr-auto">
                                     <label for="" class="mx-2 text-sm">Leveling Type:</label>
                                     <input type="radio" value="h" formControlName="accLvlType" class="mx-2">
                                     Handlevelled
@@ -246,15 +246,7 @@
                             </div>
                         </div>
 
-                    <button class="cssbuttons-io-button my-10" type="submit"> Submit
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path fill="currentColor"
-                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
-                            </svg>
-                        </div>
-                    </button>
+                    <button class="md:mb-20 bg-[var(--blue2)] my-5 p-3 text-white text-xl hover:bg-[var(--blue3)] rounded-lg" type="submit">Submit</button>
                     </div>
                 </form>
             </div>

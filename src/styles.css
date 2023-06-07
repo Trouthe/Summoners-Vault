@@ -49,3 +49,9 @@
     background: #ec262670
 }
 
+.mobileNav {backdrop-filter: blur(8px)}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+}

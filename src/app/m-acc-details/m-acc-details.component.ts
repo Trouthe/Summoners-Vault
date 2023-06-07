@@ -1,6 +1,8 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth.service';
 
 import { Location } from '@angular/common';
 
@@ -10,11 +12,16 @@ import { Location } from '@angular/common';
   styleUrls: ['./m-acc-details.component.css'],
 })
 export class MAccDetailsComponent {
+  uid: number | null = this.authService.getUID();
+
   accData: any;
+  checkoutForm!: FormGroup;
 
   constructor(
+    private authService: AuthService,
     private http: HttpClient,
-    private location: Location
+    private location: Location,
+    private FormBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -25,6 +32,18 @@ export class MAccDetailsComponent {
     setTimeout(() => {
       console.log(this.accData);
     }, 500);
+
+    this.checkoutForm = this.FormBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      cardholderName: ['', Validators.required],
+      cardNumber: ['', Validators.required],
+      expDate: ['', Validators.required],
+      cvc: ['', Validators.required],
+      paypalEmail: ['', [Validators.required, Validators.email]]
+    });
   }
 
   acc_id(): string {
@@ -41,7 +60,6 @@ export class MAccDetailsComponent {
     }
     return 'UNRANKED';
   }
-  
 
   isCardVisible = false;
   isPaypalVisible = false;

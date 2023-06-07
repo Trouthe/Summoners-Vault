@@ -9,7 +9,7 @@
 
 <div class="flex lg:flex-row flex-col-reverse md:flex-col-reverse items-center my-10 md:my-20 lg:my-10 lg:mx-20 mx-5">
     <!-- Left Side -->
-    <div class="lg:w-[75%] w-[95%] md:w-[95%]">
+    <form class="lg:w-[75%] w-[95%] md:w-[95%]">
         <div class="flex flex-col justify-start items-start">
             <div>
                 <p class="text-3xl mt-10 md:mt-0 lg:mt-0">Checkout</p>
@@ -17,14 +17,14 @@
             </div>
 
             <p class="mt-10">1. Contact Information</p>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-full">
                 <div class="flex flex-row">
-                    <div class="input-container">
+                    <div class="input-container w-full">
                         <input placeholder="First Name" class="input-field" type="text">
                         <label for="input-field" class="input-label">First Name</label>
                         <span class="input-highlight"></span>
                     </div>
-                    <div class="input-container">
+                    <div class="input-container w-full">
                         <input placeholder="Last Name" class="input-field" type="text">
                         <label for="input-field" class="input-label">Last Name</label>
                         <span class="input-highlight"></span>
@@ -32,12 +32,12 @@
                 </div>
 
                 <div class="flex flex-row">
-                    <div class="input-container">
+                    <div class="input-container w-full">
                         <input placeholder="Phone Number" class="input-field" type="number">
                         <label for="input-field" class="input-label">Phone Number</label>
                         <span class="input-highlight"></span>
                     </div>
-                    <div class="input-container">
+                    <div class="input-container w-full">
                         <input placeholder="Email" class="input-field" type="mail">
                         <label for="input-field" class="input-label">Email</label>
                         <span class="input-highlight"></span>
@@ -51,7 +51,7 @@
                 <button class="paymentButton" (click)="showPaypal()">PayPal</button>
             </div>
 
-            <div class="mt-5" *ngIf="isCardVisible">
+            <div class="mt-5 w-full" *ngIf="isCardVisible">
                 <!-- Card content -->
                 <div class="">
                     <div class="input-container">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-between">
                     <div class="input-container">
                         <input placeholder="Exp Date" class="input-field" type="text">
                         <label for="input-field" class="input-label">Exp Date</label>
@@ -84,7 +84,7 @@
                 </div>
             </div>
               
-            <div class="mt-5" *ngIf="isPaypalVisible">
+            <div class="mt-5 w-full" *ngIf="isPaypalVisible">
                 <!-- Paypal content -->
                 <div class="input-container">
                     <input placeholder="PayPal Email" class="input-field" type="text">
@@ -93,7 +93,9 @@
                 </div>
             </div>
         </div>
-    </div>
+        <button class="md:mb-20 w-full bg-[var(--blue2)] my-5 p-3 text-white text-xl hover:bg-[var(--blue3)]">Pay -></button>
+
+    </form>
 
     <!-- Right Side -->
     <div class="lg:w-[25%] w-[95%] md:w-[95%]">
@@ -143,7 +145,5 @@
         <div>
             <p class="text-center mt-5 text-xl">Total: ${{accData?.[0].accPrice}}</p>
         </div>
-
-        <button class="md:mb-20 w-full bg-[var(--blue2)] my-5 p-3 text-white text-xl hover:bg-[var(--blue3)]">Pay -></button>
     </div>
 </div>

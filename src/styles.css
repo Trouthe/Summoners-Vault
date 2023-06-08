@@ -55,3 +55,14 @@
     color: red;
     font-size: 0.8rem;
 }
+
+button[disabled]{
+    background-color: darkgray;
+    color: black;
+    opacity: 0.25;
+}
+
+button[disabled]:hover {
+    background-color: darkgray;
+    color: initial;
+}

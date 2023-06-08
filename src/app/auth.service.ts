@@ -9,7 +9,7 @@ export class AuthService {
   // private uid!:string | null;
 
   // TESTING PUPOSES
-  private uid: number | null = 1;
+  private uid: number | null = null;
 
   constructor(private http: HttpClient) {}
 

@@ -9,7 +9,7 @@
 
 <div class="flex lg:flex-row flex-col-reverse md:flex-col-reverse items-center my-10 md:my-20 lg:my-10 lg:mx-20 mx-5">
     <!-- Left Side -->
-    <form class="lg:w-[75%] w-[95%] md:w-[95%]">
+    <form [formGroup]="checkoutForm" class="lg:w-[75%] w-[95%] md:w-[95%] lg:mr-10">
         <div class="flex flex-col justify-start items-start">
             <div>
                 <p class="text-3xl mt-10 md:mt-0 lg:mt-0">Checkout</p>
@@ -20,27 +20,44 @@
             <div class="flex flex-col w-full">
                 <div class="flex flex-row">
                     <div class="input-container w-full">
-                        <input placeholder="First Name" class="input-field" type="text">
+                        <input formControlName="firstName" placeholder="First Name" class="input-field" type="text">
                         <label for="input-field" class="input-label">First Name</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('firstName')!.invalid && checkoutForm.get('firstName')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('firstName')!.hasError('required')" class="error-message">First Name is required.</span>
+                        </div>
                     </div>
                     <div class="input-container w-full">
-                        <input placeholder="Last Name" class="input-field" type="text">
+                        <input formControlName="lastName" placeholder="Last Name" class="input-field" type="text">
                         <label for="input-field" class="input-label">Last Name</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('lastName')!.invalid && checkoutForm.get('lastName')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('lastName')!.hasError('required')" class="error-message">Last Name is required.</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex flex-row">
                     <div class="input-container w-full">
-                        <input placeholder="Phone Number" class="input-field" type="number">
+                        <input formControlName="phoneNumber" placeholder="Phone Number" class="input-field" type="number">
                         <label for="input-field" class="input-label">Phone Number</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('phoneNumber')!.invalid && checkoutForm.get('phoneNumber')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('phoneNumber')!.hasError('required')" class="error-message">Phone Number is required.</span>
+                        </div>
                     </div>
                     <div class="input-container w-full">
-                        <input placeholder="Email" class="input-field" type="mail">
+                        <input formControlName="email" placeholder="Email" class="input-field" type="mail">
                         <label for="input-field" class="input-label">Email</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('email')!.invalid && checkoutForm.get('email')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('email')!.hasError('required')" class="error-message">E-Mail is required.</span>
+                            <span *ngIf="checkoutForm.get('email')!.hasError('email')" class="error-message">E-Mail is invalid.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,31 +72,47 @@
                 <!-- Card content -->
                 <div class="">
                     <div class="input-container">
-                        <input placeholder="Cardholder Name" class="input-field" type="text">
+                        <input formControlName="cardholderName" placeholder="Cardholder Name" class="input-field" type="text">
                         <label for="input-field" class="input-label">Cardholder Name</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('cardholderName')!.invalid && checkoutForm.get('cardholderName')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('cardholderName')!.hasError('required')" class="error-message">Name is required.</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mt-9">
                     <div class="input-container">
-                        <input placeholder="Card Number" class="input-field" type="number">
+                        <input formControlName="cardNumber" placeholder="Card Number" class="input-field" type="number">
                         <label for="input-field" class="input-label">Card Number</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('cardNumber')!.invalid && checkoutForm.get('cardNumber')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('cardNumber')!.hasError('required')" class="error-message">Card Number is required.</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex flex-row justify-between">
                     <div class="input-container">
-                        <input placeholder="Exp Date" class="input-field" type="text">
+                        <input formControlName="expDate" placeholder="Exp Date" class="input-field" type="date">
                         <label for="input-field" class="input-label">Exp Date</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('expDate')!.invalid && checkoutForm.get('expDate')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('expDate')!.hasError('required')" class="error-message">Expiry Date is invalid.</span>
+                        </div>
                     </div>
 
                     <div class="input-container">
-                        <input placeholder="CVC" class="input-field" type="text">
+                        <input formControlName="cvc" placeholder="CVC" class="input-field" type="text">
                         <label for="input-field" class="input-label">CVC</label>
                         <span class="input-highlight"></span>
+
+                        <div *ngIf="checkoutForm.get('cvc')!.invalid && checkoutForm.get('cvc')!.touched" class="absolute">
+                            <span *ngIf="checkoutForm.get('cvc')!.hasError('required')" class="error-message">CVC is required.</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,14 +120,20 @@
             <div class="mt-5 w-full" *ngIf="isPaypalVisible">
                 <!-- Paypal content -->
                 <div class="input-container">
-                    <input placeholder="PayPal Email" class="input-field" type="text">
+                    <input formControlName="paypalEmail" placeholder="PayPal Email" class="input-field" type="text">
                     <label for="input-field" class="input-label">PayPal Email</label>
                     <span class="input-highlight"></span>
+
+                    <div *ngIf="checkoutForm.get('paypalEmail')!.invalid && checkoutForm.get('paypalEmail')!.touched" class="absolute">
+                        <span *ngIf="checkoutForm.get('paypalEmail')!.hasError('required')" class="error-message">E-Mail is required.</span>
+                        <span *ngIf="checkoutForm.get('paypalEmail')!.hasError('mail')" class="error-message">E-Mail is invalid.</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <button class="md:mb-20 w-full bg-[var(--blue2)] my-5 p-3 text-white text-xl hover:bg-[var(--blue3)]">Pay -></button>
-
+        <button class="md:mb-20 w-full bg-[var(--blue2)] my-5 p-3 text-white text-xl hover:bg-[var(--blue3)]"
+            (click)="purchase()"
+            [disabled]="!checkoutForm.valid || (!isCardVisible && !isPaypalVisible)">Pay</button>
     </form>
 
     <!-- Right Side -->

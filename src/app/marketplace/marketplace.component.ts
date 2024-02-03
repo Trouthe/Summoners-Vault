@@ -56,7 +56,7 @@ export class MarketplaceComponent {
     this.http.get<any>(environment.marketplaceAccounts).subscribe(
       (response) => {
         this.serv.setLoading(false);
-        console.log(response); // Log the response data
+        // console.log(response); // Log the response data
         this.m_Accounts = response;
       },
       (error) => {
@@ -122,9 +122,5 @@ export class MarketplaceComponent {
       if (event.key === 'Escape')
         this.selectedAccountIndex = null
     }
-  }
-
-  logg(x: any){
-    console.log(x);
   }
 }

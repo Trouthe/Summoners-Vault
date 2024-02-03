@@ -98,6 +98,7 @@ export class InfoCardComponent {
         for (let i = 0; i < rankResults?.length; i++) {
           let summonerLevel = this.apiAccounts[i].summonerLevel;
           let summonerID = this.apiAccounts[i].id;
+          let summonerPUUID = this.apiAccounts[i].puuid;
           let profileIconID = this.apiAccounts[i].profileIconId;
           let rank,
             rankTier,
@@ -134,7 +135,7 @@ export class InfoCardComponent {
           let API_ChampionMastery =
             environment.masteryInfo +
             '?summoner_id=' +
-            encodeURIComponent(this.apiAccounts[i].id) +
+            encodeURIComponent(summonerPUUID) +
             '&region=' +
             encodeURIComponent(this.accounts[i].accServer);
 
@@ -151,34 +152,39 @@ export class InfoCardComponent {
             .subscribe(
               (data) => {
                 for (let k = 0; k < 3; k++) {
-                  this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json')
-                    .subscribe(
-                      (response: any) => {
-                        
-                        championIds.push(data[k].championId);
+                  this.http
+                    .get<any>(
+                      'https://ddragon.leagueoflegends.com/cdn/13.10.1/data/en_US/champion.json'
+                    )
+                    .subscribe((response: any) => {
+                      championIds.push(data[k].championId);
 
-                        champions = Object.values<any>(response.data);
-                        let filter = champions.filter((obj) => {
-                          if (obj.key == data[k].championId) {
-                            let temp = obj.name.replace(
-                              /[^a-zA-Z\s]/g, '').toLowerCase().replace(/\b\w/g, (firstChar: string) => firstChar.toUpperCase()
-                              );
+                      champions = Object.values<any>(response.data);
+                      let filter = champions.filter((obj) => {
+                        if (obj.key == data[k].championId) {
+                          let temp = obj.name
+                            .replace(/[^a-zA-Z\s]/g, '')
+                            .toLowerCase()
+                            .replace(/\b\w/g, (firstChar: string) =>
+                              firstChar.toUpperCase()
+                            );
 
-                            // debug
-                            // console.log(this.accounts[i].accIGN + ' ' + temp)
-                            championNames.push(temp);
-                          }
-                        });
-                        
-                        championPoints.push(data[k].championPoints);
-                        championLevels.push(data[k].championLevel);
+                          // debug
+                          // console.log(this.accounts[i].accIGN + ' ' + temp)
+                          championNames.push(temp);
+                        }
                       });
+
+                      championPoints.push(data[k].championPoints);
+                      championLevels.push(data[k].championLevel);
+                    });
                 }
               });
 
           this.combinedAccounts.push({
             // crucial info
             userID: this.accounts[i].userID,
+            accPUUID: summonerPUUID,
             summonerID: summonerID,
             accID: this.accounts[i].acc_id,
             forsale: this.accounts[i].acctosell,
@@ -250,7 +256,7 @@ export class InfoCardComponent {
         );
       });
 
-      console.log(this.combinedAccounts);
+      // console.log(this.combinedAccounts);
     });
   }
 

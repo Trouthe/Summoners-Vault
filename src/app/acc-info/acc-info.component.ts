@@ -20,7 +20,7 @@ export class AccInfoComponent {
   // }
 
   uid: number | null = this.authService.getUID();
-  loading: boolean = false;
+  loading: boolean = true;
   loadInterval: any;
 
   constructor(
